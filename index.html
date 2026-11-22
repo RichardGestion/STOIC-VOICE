@@ -1,0 +1,1946 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0c0a">
+<title>STOIC VOICE — Lee, escucha y habla con los estoicos</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 21h12M8 18h8M9 18V9m3 9V9m3 9V9M7 9h10M8 6h8l1-3H7z' stroke='%23c9a86a' stroke-width='1.6' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   STOIC VOICE · "Estoica Moderna" · v2 multiidioma
+   ============================================================ */
+:root{
+  --bg:#0d0c0a; --panel:#191611; --panel2:#211c15; --raise:#262017;
+  --line:rgba(206,178,124,.15); --line2:rgba(206,178,124,.38);
+  --gold:#c9a86a; --gold2:#e9d3a0; --bronze:#8f7443;
+  --olive:#a9b48a; --ok:#9db87c; --bad:#d07a63;
+  --ink:#ece4d2; --mut:#a89d86; --dim:#786f5c;
+  --serif:'Fraunces',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:18px; --sh:0 24px 60px rgba(0,0,0,.5);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans); color:var(--ink); background:
+  radial-gradient(1100px 700px at 88% -8%, rgba(201,168,106,.08), transparent 60%),
+  radial-gradient(900px 700px at -12% 108%, rgba(154,168,120,.06), transparent 60%),
+  var(--bg);
+  min-height:100vh; -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+body::before{content:""; position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+::selection{background:rgba(201,168,106,.35)}
+button{font-family:inherit; cursor:pointer; color:inherit; background:none; border:none}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold); outline-offset:2px; border-radius:6px}
+svg.ic{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.watermark{position:fixed; right:-60px; bottom:-80px; width:420px; height:420px; opacity:.035; z-index:0; pointer-events:none; color:var(--gold)}
+@media(max-width:900px){.watermark{display:none}}
+
+/* ---------- Cabecera + DEDICATORIA centrada ---------- */
+header{position:sticky; top:0; z-index:50; backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+  background:rgba(13,12,10,.85); border-bottom:1px solid var(--line)}
+.hwrap{max-width:1180px; margin:0 auto; padding:13px 22px 9px; display:flex; align-items:center; gap:14px}
+.brand{display:flex; align-items:center; gap:11px; user-select:none}
+.brand .sigil{width:38px;height:38px;border:1px solid var(--line2);border-radius:11px;display:grid;place-items:center;color:var(--gold);background:linear-gradient(150deg,#221c13,#15120c)}
+.brand h1{font-family:var(--serif); font-size:1.06rem; letter-spacing:.2em; font-weight:600}
+.brand h1 em{font-style:normal; color:var(--gold)}
+.brand small{display:block; font-family:var(--sans); font-size:.56rem; letter-spacing:.34em; color:var(--dim); margin-top:2px}
+.hspace{flex:1}
+.chip{display:flex; align-items:center; gap:7px; padding:7px 13px; border:1px solid var(--line); border-radius:99px; background:rgba(201,168,106,.05); font-size:.8rem; font-weight:600; white-space:nowrap}
+.chip svg.ic{width:15px;height:15px}
+.chip .lbl{color:var(--mut); font-weight:500}
+#chipStreak svg{color:#d99a5b}
+#chipStreak.hot svg{animation:flick 1.6s ease-in-out infinite}
+#chipXp svg{color:var(--gold)}
+.chip.bump{animation:bump .5s ease}
+@keyframes bump{40%{transform:scale(1.14)}}
+@keyframes flick{0%,100%{transform:scale(1) rotate(-2deg)}50%{transform:scale(1.12) rotate(2deg)}}
+.icon-btn{width:38px;height:38px;border:1px solid var(--line);border-radius:11px;display:grid;place-items:center;color:var(--mut);transition:.25s}
+.icon-btn:hover{color:var(--gold2); border-color:var(--line2); transform:translateY(-1px)}
+/* La dedicatoria: fila centrada bajo la marca, siempre visible */
+.dedication{display:flex; align-items:center; justify-content:center; gap:16px; padding:5px 16px 9px}
+.dedication p{font-family:var(--serif); font-style:italic; font-size:.82rem; color:#cdbf9f; text-align:center; line-height:1.4}
+.dedication b{color:var(--gold2); font-weight:600}
+.dedication .heart{color:var(--gold); font-style:normal}
+.d-rule{height:1px; flex:0 1 130px; background:linear-gradient(90deg,transparent,var(--line2))}
+.d-rule.rev{background:linear-gradient(90deg,var(--line2),transparent)}
+@media(max-width:640px){.brand small{display:none}.chip .lbl{display:none}.hwrap{padding:11px 14px 7px;gap:8px}
+  .dedication{padding:3px 12px 8px; gap:8px}.dedication p{font-size:.72rem}.d-rule{flex-basis:34px}}
+
+/* ---------- Vistas ---------- */
+main{position:relative; z-index:1; max-width:1180px; margin:0 auto; padding:28px 22px 90px}
+.view{display:none}
+.view.active{display:block; animation:viewIn .45s cubic-bezier(.22,.8,.3,1)}
+@keyframes viewIn{from{opacity:0; transform:translateY(14px)}to{opacity:1; transform:none}}
+.panel{background:linear-gradient(160deg,var(--panel2),var(--panel)); border:1px solid var(--line); border-radius:var(--r); box-shadow:var(--sh)}
+.hero{display:grid; grid-template-columns:1.25fr .9fr; overflow:hidden; margin-bottom:26px}
+.hero-left{padding:clamp(22px,3.4vw,38px); border-right:1px solid var(--line)}
+.kicker{font-size:.62rem; letter-spacing:.32em; color:var(--gold); font-weight:700; text-transform:uppercase; display:flex; align-items:center; gap:10px}
+.kicker::after{content:""; height:1px; flex:1; background:linear-gradient(90deg,var(--line2),transparent)}
+.hero h2{font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,2.8vw,2.15rem); line-height:1.25; margin:14px 0 6px}
+.hero h2 em{font-style:italic; color:var(--gold2)}
+.goal-row{display:flex; align-items:center; gap:18px; margin-top:20px; flex-wrap:wrap}
+.ring{position:relative; width:76px; height:76px; flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .bgc{stroke:#2b251b}
+.ring .fgc{stroke:var(--gold); stroke-linecap:round; transition:stroke-dashoffset .8s cubic-bezier(.22,.8,.3,1)}
+.ring b{position:absolute; inset:0; display:grid; place-items:center; font-size:.86rem; font-family:var(--serif)}
+.goal-meta{font-size:.85rem; color:var(--mut); line-height:1.7}
+.goal-meta strong{color:var(--ink)}
+.qotd{margin-top:22px; padding:16px 18px; border-left:2px solid var(--gold); background:rgba(201,168,106,.05); border-radius:0 12px 12px 0}
+.qotd p{font-family:var(--serif); font-style:italic; font-size:1.02rem; line-height:1.55; color:#d9cfb8}
+.qotd span{display:block; margin-top:8px; font-size:.68rem; letter-spacing:.22em; color:var(--dim); text-transform:uppercase}
+.hero-right{padding:clamp(22px,3.4vw,38px); display:flex; flex-direction:column; gap:14px; justify-content:center; background:radial-gradient(400px 260px at 100% 0%, rgba(201,168,106,.07), transparent)}
+.continue{display:flex; gap:14px; align-items:center; padding:14px; border:1px solid var(--line); border-radius:14px; background:rgba(0,0,0,.22)}
+.continue .mini{width:46px; height:64px; border-radius:5px; overflow:hidden; flex:none; box-shadow:0 8px 18px rgba(0,0,0,.5)}
+.continue .mini svg{width:100%;height:100%;display:block}
+.continue p{font-size:.7rem; letter-spacing:.2em; color:var(--dim); text-transform:uppercase}
+.continue strong{display:block; font-family:var(--serif); font-size:1rem; margin:4px 0 2px; font-weight:600}
+.continue span{font-size:.76rem; color:var(--mut)}
+@media(max-width:820px){.hero{grid-template-columns:1fr}.hero-left{border-right:none;border-bottom:1px solid var(--line)}}
+
+/* ---------- Botones ---------- */
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:12px 20px; border-radius:12px;
+  border:1px solid var(--line2); background:linear-gradient(160deg,#262017,#1a1610); color:var(--ink);
+  font-size:.86rem; font-weight:600; letter-spacing:.02em; transition:.22s; user-select:none}
+.btn:hover{border-color:var(--gold); color:var(--gold2); transform:translateY(-2px); box-shadow:0 10px 24px rgba(0,0,0,.4)}
+.btn:active{transform:translateY(0) scale(.97)}
+.btn.gold{background:linear-gradient(160deg,var(--gold2),var(--gold) 55%,var(--bronze)); color:#221a0d; border-color:transparent; text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.btn.gold:hover{color:#160f06; box-shadow:0 12px 30px rgba(201,168,106,.28)}
+.btn.ghost{background:transparent; border-color:var(--line)}
+.btn.sm{padding:8px 14px; font-size:.78rem; border-radius:10px}
+.btn[disabled]{opacity:.35; pointer-events:none}
+/* Píldora de velocidad estilo WhatsApp (junto a Escuchar nativo) */
+.speed-chip{min-width:58px; padding:11px 12px; border-radius:99px; border:1px solid var(--line2);
+  background:rgba(201,168,106,.1); color:var(--gold2); font-weight:700; font-size:.84rem; letter-spacing:.03em;
+  transition:.2s; user-select:none}
+.speed-chip:hover{border-color:var(--gold); background:rgba(201,168,106,.18)}
+.speed-chip.pop{animation:bump .35s ease}
+
+/* ---------- Estadísticas ---------- */
+.stats{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:34px}
+.stat{padding:16px 18px; border:1px solid var(--line); border-radius:14px; background:rgba(25,22,17,.6); display:flex; align-items:center; gap:13px}
+.stat .sic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:rgba(201,168,106,.08);border:1px solid var(--line);color:var(--gold)}
+.stat b{font-family:var(--serif); font-size:1.35rem; display:block; line-height:1.1}
+.stat span{font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; color:var(--dim)}
+@media(max-width:720px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* ---------- Estanterías ---------- */
+.shelf{margin-bottom:40px}
+.shelf-head{display:flex; align-items:baseline; gap:14px; margin-bottom:18px}
+.shelf-head .rn{font-family:var(--serif); font-style:italic; color:var(--gold); font-size:1.15rem}
+.shelf-head h3{font-family:var(--serif); font-weight:600; font-size:1.3rem}
+.shelf-head .rule{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
+.shelf-head .count{font-size:.7rem; color:var(--dim); letter-spacing:.15em; white-space:nowrap}
+.grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px}
+@media(max-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:720px){.grid{grid-template-columns:repeat(2,1fr); gap:14px}}
+.book{position:relative; text-align:left; transition:.3s cubic-bezier(.22,.8,.3,1); border-radius:12px}
+.book:hover{transform:perspective(900px) rotateY(-5deg) translateY(-6px)}
+.cover{position:relative; aspect-ratio:5/7; border-radius:9px; overflow:hidden; box-shadow:0 18px 40px rgba(0,0,0,.55), inset 0 0 0 1px rgba(233,211,160,.12)}
+.cover svg.bg{position:absolute; inset:0; width:100%; height:100%}
+.cover::before{content:""; position:absolute; left:0; top:0; bottom:0; width:7px; background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(255,255,255,.06) 60%,transparent); z-index:2}
+.cover::after{content:""; position:absolute; inset:0; background:linear-gradient(115deg,transparent 30%,rgba(255,244,214,.14) 45%,transparent 60%); transform:translateX(-120%); transition:transform .8s ease; z-index:3}
+.book:hover .cover::after{transform:translateX(120%)}
+.lang-badge{position:absolute; top:10px; left:13px; z-index:4; font-size:.58rem; font-weight:700; letter-spacing:.14em;
+  color:var(--gold2); border:1px solid var(--line2); background:rgba(10,8,6,.72); padding:3px 8px; border-radius:99px}
+.cover-info{position:absolute; left:0; right:0; bottom:0; padding:13px 14px 12px; z-index:2; background:linear-gradient(0deg,rgba(8,7,5,.88) 20%,transparent)}
+.cover-info h4{font-family:var(--serif); font-weight:600; font-size:clamp(.86rem,1.4vw,1.02rem); line-height:1.25; color:#f2ead8}
+.cover-info p{font-size:.6rem; letter-spacing:.2em; text-transform:uppercase; color:#b3a685; margin-top:5px}
+.book-meta{display:flex; align-items:center; gap:8px; margin-top:10px; font-size:.7rem; color:var(--dim)}
+.pbar{flex:1; height:3px; border-radius:3px; background:#2b251b; overflow:hidden}
+.pbar i{display:block; height:100%; background:linear-gradient(90deg,var(--bronze),var(--gold2)); border-radius:3px; transition:width .6s}
+.book .del{position:absolute; top:8px; right:8px; z-index:5; width:28px; height:28px; border-radius:8px; background:rgba(10,8,6,.75); border:1px solid var(--line); color:var(--mut); display:grid; place-items:center; opacity:0; transition:.2s}
+.book:hover .del{opacity:1}
+.book .del.armed{opacity:1; width:auto; padding:0 10px; color:var(--bad); border-color:var(--bad); font-size:.68rem; font-weight:700}
+.add-card{aspect-ratio:5/7; border:1.5px dashed var(--line2); border-radius:9px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:var(--mut); transition:.25s; background:rgba(201,168,106,.02)}
+.add-card:hover{color:var(--gold2); border-color:var(--gold); background:rgba(201,168,106,.06)}
+.add-card svg.ic{width:26px;height:26px}
+.add-card span{font-size:.78rem; font-weight:600; letter-spacing:.06em}
+
+/* ---------- Lector ---------- */
+.reader-top{display:flex; align-items:center; gap:14px; flex-wrap:wrap; margin-bottom:14px}
+.reader-top .mini{width:34px; height:48px; border-radius:4px; overflow:hidden; flex:none}
+.reader-top .mini svg{width:100%;height:100%;display:block}
+.rt-title{min-width:0}
+.rt-title h2{font-family:var(--serif); font-size:1.12rem; font-weight:600; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.rt-title p{font-size:.7rem; color:var(--dim); letter-spacing:.14em; text-transform:uppercase}
+.rt-tools{margin-left:auto; display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+.switch{display:flex; align-items:center; gap:9px; font-size:.72rem; font-weight:600; color:var(--mut); letter-spacing:.05em}
+.switch .track{width:44px; height:24px; border-radius:99px; border:1px solid var(--line2); background:#221d15; position:relative; transition:.3s}
+.switch .track::after{content:""; position:absolute; top:3px; left:3px; width:16px; height:16px; border-radius:50%; background:var(--gold); transition:.3s cubic-bezier(.22,.8,.3,1)}
+.switch[aria-pressed="true"] .track{background:rgba(154,168,120,.25); border-color:var(--olive)}
+.switch[aria-pressed="true"] .track::after{left:23px; background:var(--olive)}
+.read-progress{height:2px; background:#241f16; border-radius:2px; margin-bottom:20px; overflow:hidden}
+.read-progress i{display:block; height:100%; width:0; background:linear-gradient(90deg,var(--bronze),var(--gold2)); transition:width .5s cubic-bezier(.22,.8,.3,1)}
+details.about{margin-bottom:22px; border:1px solid var(--line); border-radius:12px; background:rgba(25,22,17,.5); font-size:.83rem}
+details.about summary{padding:12px 18px; cursor:pointer; color:var(--mut); font-weight:600; letter-spacing:.04em; list-style:none}
+details.about summary::before{content:"◆ "; color:var(--gold); font-size:.6rem; vertical-align:2px}
+details.about p{padding:0 18px 16px; color:var(--mut); line-height:1.7}
+
+/* ====== TARJETA DE ENFOQUE ====== */
+.card{position:relative; max-width:800px; margin:0 auto; padding:clamp(26px,4.5vw,48px);
+  background:linear-gradient(165deg,#201b13 0%,#17130d 60%,#14110b 100%);
+  border:1px solid var(--line); border-radius:22px; box-shadow:var(--sh);
+  animation:cardIn .5s cubic-bezier(.22,.8,.3,1)}
+@keyframes cardIn{from{opacity:0; transform:translateY(22px) scale(.985)}to{opacity:1; transform:none}}
+.card::before{content:""; position:absolute; top:-1px; left:8%; right:8%; height:1px; background:linear-gradient(90deg,transparent,var(--gold) 50%,transparent)}
+.card::after{content:""; position:absolute; top:-5px; left:50%; width:9px; height:9px; transform:translateX(-50%) rotate(45deg); background:var(--bg); border:1px solid var(--gold)}
+.card-kicker{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:22px}
+.card-kicker .ref{font-size:.64rem; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); font-weight:700}
+.tag{font-size:.6rem; letter-spacing:.12em; padding:4px 9px; border-radius:99px; border:1px solid var(--line); color:var(--dim); text-transform:uppercase}
+.tag.lang{color:var(--olive); border-color:rgba(169,180,138,.35)}
+.seal{margin-left:auto; display:none; align-items:center; gap:6px; font-size:.66rem; font-weight:700; letter-spacing:.14em; color:var(--gold2);
+  border:1px solid var(--line2); padding:5px 11px; border-radius:99px; background:rgba(201,168,106,.1); transform:rotate(1.5deg)}
+.card.mastered .seal{display:inline-flex}
+.en{position:relative; font-family:var(--serif); font-weight:500; font-size:clamp(1.42rem,2.9vw,2.05rem); line-height:1.55; margin-bottom:26px}
+.en.zh{font-family:'PingFang SC','Microsoft YaHei','Noto Sans CJK SC',var(--serif); letter-spacing:.08em; line-height:1.7}
+.en::before{content:"“"; position:absolute; top:-.55em; left:-.12em; font-size:3.4em; color:var(--gold); opacity:.09; font-style:italic; pointer-events:none}
+.w{border-radius:6px; padding:0 2px; transition:background .15s,color .15s,box-shadow .15s}
+.w.speak{background:rgba(201,168,106,.2); color:var(--gold2); box-shadow:inset 0 -2px 0 var(--gold)}
+.w.ok{color:var(--ok); box-shadow:inset 0 -2px 0 rgba(157,184,124,.65)}
+.w.bad{color:var(--bad); text-decoration:underline wavy rgba(208,122,99,.75); text-decoration-thickness:1.5px; text-underline-offset:5px}
+/* franja fonética · AHORA es la protagonista del resaltado */
+.ph-row{display:flex; gap:14px; align-items:flex-start; padding:14px 18px; margin-bottom:16px;
+  background:rgba(201,168,106,.05); border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:0 13px 13px 0}
+.ph-row .side{display:flex; flex-direction:column; align-items:center; gap:5px; color:var(--gold); padding-top:2px}
+.ph-row .side small{font-size:.5rem; letter-spacing:.24em; color:var(--dim)}
+.ph{font-size:1.06rem; line-height:1.9; color:#cfc4ab; letter-spacing:.02em}
+.ph b{color:var(--gold2); font-weight:700}
+.pw{border-radius:6px; padding:1px 3px; transition:background .12s,color .12s,box-shadow .12s}
+.pw.speak{background:rgba(201,168,106,.24); color:var(--gold2); box-shadow:inset 0 -2px 0 var(--gold)}
+.pw.speak b{color:#fff3d6}
+.pw.ok{color:var(--ok)} .pw.ok b{color:var(--ok)}
+.pw.bad{color:var(--bad)} .pw.bad b{color:var(--bad)}
+.ph-note{display:block; margin-top:6px; font-size:.64rem; color:var(--dim); line-height:1.6}
+.trans-row{margin-bottom:24px}
+.trans-head{display:flex; align-items:center; gap:10px; margin-bottom:8px}
+.trans-head small{font-size:.6rem; letter-spacing:.26em; color:var(--dim); text-transform:uppercase; font-weight:700}
+.reveal-btn{font-size:.7rem; font-weight:700; color:var(--gold); display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border:1px solid var(--line); border-radius:99px; transition:.2s}
+.reveal-btn:hover{border-color:var(--gold); background:rgba(201,168,106,.08)}
+.es{font-size:.95rem; line-height:1.75; color:#b7ac93; filter:blur(7px); user-select:none; cursor:pointer; transition:filter .55s ease}
+.trans-row.revealed .es{filter:none; user-select:auto; cursor:default}
+.actions{display:flex; align-items:center; gap:10px; flex-wrap:wrap; padding-top:20px; border-top:1px solid var(--line)}
+.btn-mic{position:relative}
+.btn-mic.recording{background:linear-gradient(160deg,#e08a70,#c96f52); color:#2a130c}
+.btn-mic.recording::before,.btn-mic.recording::after{content:""; position:absolute; inset:-4px; border-radius:14px; border:2px solid rgba(208,122,99,.6); animation:ripple 1.6s ease-out infinite}
+.btn-mic.recording::after{animation-delay:.8s}
+@keyframes ripple{from{opacity:.9; transform:scale(1)}to{opacity:0; transform:scale(1.25)}}
+.btn-listen.speaking{border-color:var(--gold); color:var(--gold2); background:rgba(201,168,106,.12)}
+.voice-status{font-size:.76rem; color:var(--mut); flex:1; min-width:140px; line-height:1.5}
+.voice-status .live{color:var(--olive); font-style:italic}
+.score-wrap{display:none; align-items:center; gap:18px; margin-top:20px; padding:16px 18px; border:1px solid var(--line); border-radius:14px; background:rgba(0,0,0,.25); flex-wrap:wrap}
+.score-wrap.show{display:flex; animation:viewIn .4s ease}
+.score-ring{position:relative; width:64px; height:64px; flex:none}
+.score-ring svg{transform:rotate(-90deg)}
+.score-ring .bgc{stroke:#2b251b}
+.score-ring .fgc{stroke:var(--gold); stroke-linecap:round; transition:stroke-dashoffset .7s cubic-bezier(.22,.8,.3,1), stroke .4s}
+.score-ring.t-good .fgc{stroke:var(--ok)} .score-ring.t-mid .fgc{stroke:var(--gold)} .score-ring.t-low .fgc{stroke:var(--bad)}
+.score-ring b{position:absolute; inset:0; display:grid; place-items:center; font-family:var(--serif); font-size:.95rem}
+.score-info{flex:1; min-width:180px}
+.score-info strong{display:block; font-size:.9rem; margin-bottom:3px}
+.score-info span{font-size:.74rem; color:var(--mut); line-height:1.5}
+.legend{display:flex; gap:14px; font-size:.66rem; color:var(--dim); margin-top:7px}
+.legend i{width:9px; height:9px; border-radius:3px; display:inline-block; margin-right:5px; vertical-align:-1px}
+.legend .lg-ok{background:var(--ok)} .legend .lg-bad{background:var(--bad)}
+body.fluent .ph-row, body.fluent .trans-row{display:none}
+.fluent-hint{display:none; font-size:.7rem; color:var(--olive); letter-spacing:.1em; margin-bottom:18px}
+body.fluent .fluent-hint{display:block}
+.dots{display:flex; gap:11px; justify-content:center; margin:26px 0 18px; flex-wrap:wrap}
+.dot{width:11px; height:11px; transform:rotate(45deg); background:#29231a; border:1px solid var(--line); transition:.25s; padding:0}
+.dot:hover{border-color:var(--gold2); transform:rotate(45deg) scale(1.25)}
+.dot.done{background:linear-gradient(135deg,var(--gold2),var(--bronze)); border-color:transparent}
+.dot.cur{border-color:var(--gold2); box-shadow:0 0 0 4px rgba(201,168,106,.14); animation:dotPulse 2s ease-in-out infinite}
+@keyframes dotPulse{50%{box-shadow:0 0 0 7px rgba(201,168,106,.06)}}
+.reader-nav{display:flex; align-items:center; justify-content:center; gap:22px}
+.reader-nav .count{font-family:var(--serif); font-size:.95rem; color:var(--mut); min-width:70px; text-align:center}
+.kbd-hint{text-align:center; margin-top:22px; font-size:.66rem; color:var(--dim); letter-spacing:.08em}
+.kbd-hint kbd{border:1px solid var(--line); border-radius:5px; padding:2px 6px; font-family:inherit; background:rgba(0,0,0,.3)}
+@media(max-width:560px){.kbd-hint{display:none}.reader-nav{gap:12px}}
+
+/* ---------- Modales / popover / toasts ---------- */
+.backdrop{position:fixed; inset:0; z-index:100; background:rgba(8,7,5,.72); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px); display:none; align-items:center; justify-content:center; padding:20px}
+.backdrop.show{display:flex; animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}}
+.modal{width:100%; max-width:560px; max-height:90vh; overflow-y:auto; padding:clamp(24px,4vw,36px); position:relative; animation:popIn .4s cubic-bezier(.22,.8,.3,1)}
+@keyframes popIn{from{opacity:0; transform:translateY(26px) scale(.96)}}
+.modal h3{font-family:var(--serif); font-size:1.4rem; font-weight:600; margin:10px 0 6px}
+.modal .sub{font-size:.8rem; color:var(--mut); line-height:1.6; margin-bottom:20px}
+.modal .x{position:absolute; top:16px; right:16px}
+.field{margin-bottom:16px}
+.field label{display:block; font-size:.66rem; letter-spacing:.2em; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:7px}
+.field input,.field textarea,.field select{width:100%; padding:12px 14px; border-radius:11px; border:1px solid var(--line2); background:rgba(0,0,0,.3); color:var(--ink); font-family:inherit; font-size:.88rem; transition:.2s; resize:vertical}
+.field input:focus,.field textarea:focus,.field select:focus{border-color:var(--gold); outline:none; box-shadow:0 0 0 3px rgba(201,168,106,.12)}
+.field textarea{min-height:100px; line-height:1.6}
+.field .hint{font-size:.68rem; color:var(--dim); margin-top:6px; line-height:1.5}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+@media(max-width:480px){.field-row{grid-template-columns:1fr}}
+.palette-pick{display:flex; gap:10px}
+.palette-pick button{width:34px; height:34px; border-radius:10px; border:2px solid transparent; transition:.2s}
+.palette-pick button.on{border-color:var(--gold2); transform:scale(1.12)}
+.celebrate{text-align:center; max-width:480px; overflow:hidden}
+.celebrate .laurel{width:96px; height:96px; margin:6px auto 4px; color:var(--gold)}
+.celebrate .laurel path{stroke-dasharray:300; stroke-dashoffset:300; animation:draw 1.6s ease forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.celebrate h3{font-size:1.7rem}
+.celebrate .big-streak{font-family:var(--serif); font-size:3rem; color:var(--gold2); line-height:1; margin:10px 0 2px}
+.celebrate blockquote{font-family:var(--serif); font-style:italic; font-size:1.05rem; line-height:1.6; color:#d9cfb8; margin:20px 0 6px; padding:0 8px}
+.celebrate cite{font-style:normal; font-size:.68rem; letter-spacing:.24em; text-transform:uppercase; color:var(--dim)}
+.celebrate .c-chips{display:flex; gap:10px; justify-content:center; margin:22px 0; flex-wrap:wrap}
+.spark{position:absolute; width:5px; height:5px; background:var(--gold2); border-radius:1px; transform:rotate(45deg); opacity:0; animation:spark 2.4s ease-out infinite}
+@keyframes spark{0%{opacity:0; transform:translateY(10px) rotate(45deg) scale(.4)}20%{opacity:1}100%{opacity:0; transform:translateY(-130px) rotate(200deg) scale(1)}}
+.popover{position:fixed; top:104px; right:22px; z-index:90; width:310px; padding:20px; display:none}
+.popover.show{display:block; animation:popIn .3s cubic-bezier(.22,.8,.3,1)}
+.popover h4{font-family:var(--serif); font-size:1rem; margin-bottom:14px}
+.popover .field{margin-bottom:13px}
+.popover .danger{color:var(--bad); border-color:rgba(208,122,99,.4); width:100%}
+.popover .danger.armed{background:rgba(208,122,99,.15); border-color:var(--bad); font-weight:700}
+.popover .note{font-size:.64rem; color:var(--dim); line-height:1.6; margin-top:12px}
+/* ---------- Selects estoicos + scrollbars del propio idioma visual ---------- */
+:root{color-scheme:dark}
+html{scrollbar-color:var(--bronze) #14110b;scrollbar-width:thin}
+::-webkit-scrollbar{width:11px;height:11px}
+::-webkit-scrollbar-track{background:#14110b}
+::-webkit-scrollbar-thumb{background:linear-gradient(180deg,var(--bronze),#5f4c2c);border-radius:8px;border:2px solid #14110b}
+::-webkit-scrollbar-thumb:hover{background:var(--gold)}
+::-webkit-scrollbar-corner{background:#14110b}
+select option,select optgroup{background:#1a1610;color:#ece4d2}
+select optgroup{color:var(--gold);font-style:normal}
+.sselect{position:relative}
+.sselect-native{display:none}
+.sselect-btn{width:100%;display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:11px;border:1px solid var(--line2);background:rgba(0,0,0,.3);color:var(--ink);font-size:.88rem;font-weight:600;text-align:left;transition:.2s}
+.sselect-btn:hover{border-color:var(--gold)}
+.sselect.open .sselect-btn{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,168,106,.12)}
+.sselect-label{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sselect-caret{width:14px;height:14px;color:var(--gold);transform:rotate(90deg);transition:.25s}
+.sselect.open .sselect-caret{transform:rotate(-90deg)}
+.sselect-panel{position:absolute;left:0;right:0;top:calc(100% + 6px);z-index:130;display:none;background:linear-gradient(165deg,#241e15,#17130d);border:1px solid var(--line2);border-radius:13px;box-shadow:0 24px 60px rgba(0,0,0,.65);overflow:hidden}
+.sselect.open .sselect-panel{display:block;animation:popIn .25s cubic-bezier(.22,.8,.3,1)}
+.sselect.up .sselect-panel{top:auto;bottom:calc(100% + 6px)}
+.sselect-search{width:100%;padding:11px 14px;border:none;border-bottom:1px solid var(--line);background:rgba(0,0,0,.35);color:var(--ink);font-family:inherit;font-size:.82rem}
+.sselect-search:focus{outline:none;border-bottom-color:var(--gold)}
+.sselect-search::placeholder{color:var(--dim)}
+.sselect-list{max-height:280px;overflow-y:auto;padding:6px}
+.sselect-group{position:sticky;top:0;z-index:2;padding:8px 10px 6px;font-size:.6rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);background:#221c13;box-shadow:0 6px 10px rgba(0,0,0,.35)}
+.sselect-item{width:100%;display:flex;align-items:center;gap:9px;padding:9px 10px;border-radius:9px;color:#cfc4ab;font-size:.8rem;text-align:left;transition:.15s;border:1px solid transparent}
+.sselect-item:hover,.sselect-item:focus-visible{background:rgba(201,168,106,.12);color:var(--gold2);outline:none;border-color:var(--line)}
+.sselect-item.cur{color:var(--gold2);background:rgba(201,168,106,.08)}
+.sselect-item.disabled{opacity:.4;cursor:default}
+.sselect-check{width:14px;flex:none;color:var(--gold);opacity:0;font-size:.75rem}
+.sselect-item.cur .sselect-check{opacity:1}
+.sselect-txt{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* ---------- Perfiles con apodo ---------- */
+.profile-chip{cursor:pointer;transition:.2s;max-width:180px}
+.profile-chip:hover{border-color:var(--gold);color:var(--gold2)}
+.profile-chip b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:110px}
+.pavatar{font-size:1rem;line-height:1;font-style:normal}
+@media(max-width:640px){.profile-chip b{display:none}.profile-chip{padding:7px 10px}}
+.prof-row{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:rgba(0,0,0,.22)}
+.prof-row.active{border-color:var(--line2);background:rgba(201,168,106,.07)}
+.prof-row .pavatar{font-size:1.3rem}
+.pinfo{flex:1;min-width:0}
+.pinfo b{display:block;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pinfo span{font-size:.68rem;color:var(--dim)}
+.ptag{font-size:.58rem;font-weight:700;letter-spacing:.14em;color:var(--gold2);border:1px solid var(--line2);padding:3px 8px;border-radius:99px}
+.pdel.armed{width:auto!important;padding:0 8px;color:var(--bad);border-color:var(--bad);font-size:.62rem;font-weight:700}
+.pedit-input{width:100%;padding:6px 9px;border-radius:8px;border:1px solid var(--gold);background:rgba(0,0,0,.35);color:var(--ink);font-family:inherit;font-size:.85rem}
+.prof-empty{font-size:.78rem;color:var(--dim);margin-bottom:10px}
+.prof-new{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
+.avatar-pick{display:flex;gap:8px;flex-wrap:wrap}
+.avatar-pick button{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:rgba(0,0,0,.25);font-size:1.15rem;transition:.15s}
+.avatar-pick button.on{border-color:var(--gold2);background:rgba(201,168,106,.15);transform:scale(1.1)}
+#toasts{position:fixed; top:110px; right:20px; z-index:120; display:flex; flex-direction:column; gap:10px; pointer-events:none}
+.toast{display:flex; align-items:center; gap:10px; padding:12px 18px; border-radius:13px; font-size:.82rem; font-weight:600; background:linear-gradient(160deg,#282115,#1a1610); border:1px solid var(--line2); box-shadow:var(--sh); animation:toastIn .4s cubic-bezier(.22,.8,.3,1); max-width:320px}
+.toast.gold{border-color:var(--gold); color:var(--gold2)}
+.toast.err{border-color:rgba(208,122,99,.5); color:var(--bad)}
+.toast.out{animation:toastOut .4s ease forwards}
+@keyframes toastIn{from{opacity:0; transform:translateX(40px)}}
+@keyframes toastOut{to{opacity:0; transform:translateX(40px)}}
+
+/* ---------- Footer con autoría ---------- */
+footer{position:relative; z-index:1; text-align:center; padding:30px 20px 44px; border-top:1px solid var(--line)}
+footer .dev{font-family:var(--serif); font-size:1rem; color:#d9cfb8; margin-bottom:6px}
+footer .dev b{color:var(--gold2); font-weight:600; letter-spacing:.02em}
+footer .copy{font-size:.74rem; color:var(--mut); letter-spacing:.06em; margin-bottom:12px}
+footer .fine{font-size:.64rem; color:var(--dim); line-height:1.8; max-width:640px; margin:0 auto}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important; transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- ======== Iconos SVG ======== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-col" viewBox="0 0 24 24"><path d="M6 21h12M8 18h8M9 18V9m3 9V9m3 9V9M7 9h10M8 6h8l1-3H7z"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/><path d="M12 12c1.4 1.7 2.4 2.9 2.4 4.3a2.4 2.4 0 0 1-4.8 0c0-1.4 1-2.6 2.4-4.3z"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5v9M9.2 9.8c0-1.2 1.2-2 2.8-2s2.8.8 2.8 2-1.2 1.8-2.8 2.2-2.8 1-2.8 2.2 1.2 2 2.8 2 2.8-.8 2.8-2"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h14v18H6a2 2 0 0 0-2 2zM4 19a2 2 0 0 1 2-2h14M8 7h8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M7 5l12 7-12 7z"/></symbol>
+  <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3M8.5 21h7"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M18.7 5.3l-2.1 2.1M7.4 16.6l-2.1 2.1"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M4 10v4M8 7v10M12 4v16M16 7v10M20 10v4"/></symbol>
+  <symbol id="i-quill" viewBox="0 0 24 24"><path d="M20 4C12 5 7 10 5 19c7-1 12-6 13-13zM5 19L15 9M3 21l2-2"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4 7h16M9 7V4h6v3M6 7l1 14h10l1-14M10 11v6M14 11v6"/></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 22l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5"/></symbol>
+</svg>
+
+<svg class="watermark" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-col" style="stroke:currentColor;fill:none;stroke-width:.5"/></svg>
+
+<!-- ======== Cabecera con dedicatoria centrada ======== -->
+<header>
+  <div class="hwrap">
+    <div class="brand">
+      <div class="sigil"><svg class="ic"><use href="#i-col"/></svg></div>
+      <div><h1>STOIC<em>·VOICE</em></h1><small>LEE · ESCUCHA · HABLA</small></div>
+    </div>
+    <div class="hspace"></div>
+    <div class="chip" id="chipStreak" title="Racha: días seguidos practicando en voz alta">
+      <svg class="ic"><use href="#i-flame"/></svg><b id="streakN">0</b><span class="lbl">días</span>
+    </div>
+    <div class="chip" id="chipXp" title="Dracmas: la moneda del esfuerzo estoico">
+      <svg class="ic"><use href="#i-coin"/></svg><b id="xpN">0</b><span class="lbl">dracmas</span>
+    </div>
+    <button class="chip profile-chip" id="btnProfile" title="Perfiles: cambia de apodo o crea uno nuevo" aria-label="Perfiles">
+      <span class="pavatar" id="pAvatar">👤</span><b id="pNick">Sin perfil</b>
+    </button>
+    <button class="icon-btn" id="btnSettings" aria-label="Ajustes"><svg class="ic"><use href="#i-gear"/></svg></button>
+  </div>
+  <div class="dedication">
+    <span class="d-rule"></span>
+    <p><span class="heart">❦</span> Para mi querida <b>Victoria</b> — espero que puedas mejorar tu inglés <span class="heart">❦</span></p>
+    <span class="d-rule rev"></span>
+  </div>
+</header>
+
+<main>
+<!-- ==================== BIBLIOTECA ==================== -->
+<section id="libraryView" class="view active">
+  <div class="hero panel">
+    <div class="hero-left">
+      <div class="kicker">Tu práctica diaria</div>
+      <h2>La voz se entrena como la virtud: <em>un poco cada día.</em></h2>
+      <div class="goal-row">
+        <div class="ring">
+          <svg width="76" height="76" viewBox="0 0 76 76">
+            <circle class="bgc" cx="38" cy="38" r="32" fill="none" stroke-width="5"/>
+            <circle class="fgc" id="goalRing" cx="38" cy="38" r="32" fill="none" stroke-width="5" stroke-dasharray="201" stroke-dashoffset="201"/>
+          </svg><b id="goalTxt">0/5</b>
+        </div>
+        <div class="goal-meta"><strong>Meta de hoy</strong> · frases en voz alta<br>Racha estoica: <strong id="heroStreak">0 días</strong> · Dominadas: <strong id="heroMastered">0</strong></div>
+      </div>
+      <div class="qotd"><p id="qotdText"></p><span id="qotdAuthor"></span></div>
+    </div>
+    <div class="hero-right">
+      <div class="continue" id="continueBox"></div>
+      <button class="btn gold" id="btnContinue"><svg class="ic"><use href="#i-play"/></svg><span id="btnContinueTxt">Comenzar a practicar</span></button>
+      <button class="btn ghost" id="btnAddText"><svg class="ic"><use href="#i-plus"/></svg>Añadir mi propio texto</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="sic"><svg class="ic"><use href="#i-flame"/></svg></div><div><b id="stStreak">0</b><span>Racha diaria</span></div></div>
+    <div class="stat"><div class="sic"><svg class="ic"><use href="#i-coin"/></svg></div><div><b id="stXp">0</b><span>Dracmas</span></div></div>
+    <div class="stat"><div class="sic"><svg class="ic"><use href="#i-mic"/></svg></div><div><b id="stAttempts">0</b><span>Frases habladas</span></div></div>
+    <div class="stat"><div class="sic"><svg class="ic"><use href="#i-book"/></svg></div><div><b id="stBooks">0</b><span>Libros completados</span></div></div>
+  </div>
+
+  <div class="shelf"><div class="shelf-head"><span class="rn">I.</span><h3>Clásicos Imprescindibles</h3><div class="rule"></div><span class="count">DOMINIO PÚBLICO</span></div><div class="grid" id="shelfClassic"></div></div>
+  <div class="shelf"><div class="shelf-head"><span class="rn">II.</span><h3>Modernos y Biográficos</h3><div class="rule"></div><span class="count">LECCIONES INSPIRADAS</span></div><div class="grid" id="shelfModern"></div></div>
+  <div class="shelf"><div class="shelf-head"><span class="rn">III.</span><h3>Comunicación Empresarial</h3><div class="rule"></div><span class="count">BUSINESS ENGLISH</span></div><div class="grid" id="shelfBusiness"></div></div>
+  <div class="shelf"><div class="shelf-head"><span class="rn">IV.</span><h3>Idiomas del Mundo</h3><div class="rule"></div><span class="count">中文 · DEUTSCH · ITALIANO</span></div><div class="grid" id="shelfWorld"></div></div>
+  <div class="shelf" id="shelfCustomWrap" style="display:none"><div class="shelf-head"><span class="rn">V.</span><h3>Tu Biblioteca</h3><div class="rule"></div><span class="count">TEXTOS PROPIOS</span></div><div class="grid" id="shelfCustom"></div></div>
+</section>
+
+<!-- ==================== LECTOR ==================== -->
+<section id="readerView" class="view">
+  <div class="reader-top">
+    <button class="icon-btn" id="btnBack" aria-label="Volver a la biblioteca"><svg class="ic"><use href="#i-back"/></svg></button>
+    <div class="mini" id="rCover"></div>
+    <div class="rt-title"><h2 id="rTitle"></h2><p id="rAuthor"></p></div>
+    <div class="rt-tools">
+      <button class="switch" id="modeSwitch" aria-pressed="false" title="Entrenamiento (con ayudas) vs lectura fluida (solo el idioma)">
+        <span id="modeLabel">ENTRENAMIENTO</span><span class="track"></span>
+      </button>
+    </div>
+  </div>
+  <div class="read-progress"><i id="rBar"></i></div>
+  <details class="about"><summary>Sobre esta obra</summary><p id="rDesc"></p></details>
+  <p class="fluent-hint">◆ MODO FLUIDO — fonética y traducción ocultas. El resaltado vuelve al texto original.</p>
+  <div id="cardHost"></div>
+  <div class="dots" id="dots"></div>
+  <div class="reader-nav">
+    <button class="btn ghost" id="btnPrev"><svg class="ic"><use href="#i-back"/></svg>Anterior</button>
+    <span class="count" id="blockCount">1 / 8</span>
+    <button class="btn" id="btnNext">Siguiente<svg class="ic"><use href="#i-next"/></svg></button>
+  </div>
+  <p class="kbd-hint"><kbd>←</kbd> <kbd>→</kbd> navegar · <kbd>espacio</kbd> escuchar · <kbd>S</kbd> velocidad · <kbd>M</kbd> micrófono · <kbd>T</kbd> traducción</p>
+</section>
+</main>
+
+<!-- ======== Footer: derechos y autoría ======== -->
+<footer>
+  <p class="dev">Desarrollado por el <b>Lic. Richard Suárez</b></p>
+  <p class="copy">© <span id="year"></span> STOIC VOICE · Todos los derechos reservados</p>
+  <p class="fine">Tus datos viven únicamente en este navegador (localStorage). Reconocimiento de voz óptimo en Chrome / Edge con conexión a internet · El micrófono requiere permiso. Las voces en chino, alemán e italiano dependen de las voces instaladas en tu sistema o navegador.</p>
+</footer>
+
+<!-- ======== Modal: añadir texto ======== -->
+<div class="backdrop" id="addBackdrop" role="dialog" aria-modal="true" aria-label="Añadir texto">
+  <div class="modal panel">
+    <button class="icon-btn x" data-close="addBackdrop" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div class="kicker">Tu biblioteca</div>
+    <h3>Añadir un texto nuevo</h3>
+    <p class="sub">Pega cualquier texto y practícalo con el mismo sistema: voz nativa, fonética y shadowing con puntuación. Funciona en inglés, chino, alemán e italiano.</p>
+    <div class="field-row">
+      <div class="field"><label>Título *</label><input id="fTitle" maxlength="70" placeholder="Ej.: Presentación trimestral"></div>
+      <div class="field"><label>Idioma del texto</label><select id="fLang" data-stoic>
+        <option value="en">Inglés</option><option value="zh">Chino mandarín</option>
+        <option value="de">Alemán</option><option value="it">Italiano</option></select></div>
+    </div>
+    <div class="field"><label>Autor (opcional)</label><input id="fAuthor" maxlength="50" placeholder="Ej.: Mi equipo de ventas"></div>
+    <div class="field"><label>Texto original *</label><textarea id="fEn" placeholder="Pega aquí el texto. Cada frase o línea se convertirá en una tarjeta de enfoque."></textarea><div class="hint">Cada frase (o cada línea) será una tarjeta independiente.</div></div>
+    <div class="field"><label>Guía de pronunciación (opcional)</label><textarea id="fPh" placeholder="Una línea por frase, en el mismo orden. Si la dejas vacía, se genera una fonética aproximada automáticamente (en chino, parcial)."></textarea></div>
+    <div class="field"><label>Traducción al español (opcional)</label><textarea id="fEs" placeholder="Pega la traducción separada igual (frase por frase o línea por línea)."></textarea></div>
+    <div class="field"><label>Tono de portada</label><div class="palette-pick" id="palettePick"></div></div>
+    <button class="btn gold" id="btnCreateText" style="width:100%"><svg class="ic"><use href="#i-plus"/></svg>Crear libro de práctica</button>
+  </div>
+</div>
+
+<!-- ======== Modal: celebración ======== -->
+<div class="backdrop" id="celebrateBackdrop" role="dialog" aria-modal="true" aria-label="Logro">
+  <div class="modal panel celebrate" id="celebrateModal">
+    <svg class="laurel" viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <path d="M28 78C14 66 10 46 18 26c8 4 14 10 17 18M28 78c-2-10 0-20 7-28M28 78c10 2 20 0 28-6M68 78c14-12 18-32 10-52-8 4-14 10-17 18M68 78c2-10 0-20-7-28M68 78c-10 2-20 0-28-6M40 20l8-8 8 8M48 12v14"/>
+    </svg>
+    <div class="kicker" style="justify-content:center" id="celKicker">SESIÓN COMPLETADA</div>
+    <div class="big-streak" id="celBig">DÍA 1</div>
+    <h3 id="celTitle">Racha extendida</h3>
+    <blockquote id="celQuote"></blockquote>
+    <cite id="celAuthor"></cite>
+    <div class="c-chips" id="celChips"></div>
+    <button class="btn gold" data-close="celebrateBackdrop" style="width:100%">Seguir practicando</button>
+  </div>
+</div>
+
+<!-- ======== Modal: perfiles (solo apodos, sin datos reales) ======== -->
+<div class="backdrop" id="profileBackdrop" role="dialog" aria-modal="true" aria-label="Perfiles">
+  <div class="modal panel">
+    <button class="icon-btn x" data-close="profileBackdrop" aria-label="Cerrar"><svg class="ic"><use href="#i-x"/></svg></button>
+    <div class="kicker" id="profKicker">Perfiles de práctica</div>
+    <h3>¿Quién practica hoy?</h3>
+    <p class="sub">Usa solo un <b>apodo</b> — nada de nombres reales, correos ni teléfonos. Cada apodo guarda su propio progreso, racha y textos por separado, todo dentro de este navegador. No es una contraseña: es separación de progreso.</p>
+    <div id="profileList"></div>
+    <div class="prof-new">
+      <div class="field"><label>Nuevo apodo (máx. 20 caracteres)</label><input id="profNick" maxlength="20" placeholder="Ej.: Atenea, ElEstoico, Luna77…"></div>
+      <div class="field"><label>Sello personal</label><div class="avatar-pick" id="avatarPick"></div></div>
+      <button class="btn gold" id="btnCreateProfile" style="width:100%"><svg class="ic"><use href="#i-user"/></svg>Crear mi perfil</button>
+      <button class="btn ghost sm" id="btnGuest" style="width:100%;margin-top:10px">Entrar como invitado</button>
+    </div>
+  </div>
+</div>
+
+<!-- ======== Ajustes ======== -->
+<div class="popover panel" id="settingsPop">
+  <h4>Ajustes</h4>
+  <div class="field"><label>Voces nativas por idioma</label><select id="voiceSelect" data-stoic data-search="Buscar voz… (ej.: Google, Mónica, Katja)"></select></div>
+  <div class="field"><label>Meta diaria de frases</label><select id="goalSelect" data-stoic><option value="3">3 frases</option><option value="5">5 frases</option><option value="10">10 frases</option></select></div>
+  <button class="btn ghost sm" id="btnProfiles" style="width:100%;margin-bottom:10px"><svg class="ic" style="width:14px;height:14px"><use href="#i-user"/></svg>Perfiles · cambiar de apodo</button>
+  <button class="btn ghost sm danger" id="btnReset">Borrar mi progreso (solo este perfil)</button>
+  <p class="note">La velocidad (0.5× / 1× / 1.5×) se ajusta junto al botón «Escuchar nativo», como en WhatsApp. Perfiles: usa solo un apodo, nunca datos reales; cada perfil guarda su progreso por separado en este navegador. Si falta una voz (chino/alemán/italiano), instálala en tu sistema o usa Chrome con internet.</p>
+</div>
+
+<div id="toasts"></div>
+<noscript><p style="text-align:center;padding:40px">STOIC VOICE necesita JavaScript para funcionar.</p></noscript>
+
+<script>
+"use strict";
+/* ══════════════════════════════════════════════════════════════════
+   STOIC VOICE v2 · Un solo archivo · por el Lic. Richard Suárez
+   1. Idiomas + datos (85 fragmentos, fonética artesanal por idioma)
+   2. Utilidades (alineación, fonética automática EN/DE/IT/ZH)
+   3. Estado persistente          4. Portadas SVG
+   5. Biblioteca                  6. Lector por tarjetas
+   7. TTS multiidioma (resaltado sobre la FONÉTICA, velocidad WhatsApp)
+   8. STT shadowing multiidioma   9. Gamificación   10. Textos propios
+   ══════════════════════════════════════════════════════════════════ */
+
+/* ============ 1. IDIOMAS Y DATOS ============ */
+const LANGS={
+  en:{label:"Inglés", tts:"en-US", badge:"EN",
+      note:"Negrita = sílaba tónica · «z» = th de think (lengua entre dientes) · «d» = th de the · «sh» = sh suave"},
+  zh:{label:"Chino mandarín", tts:"zh-CN", badge:"中文",
+      note:"Tonos: ā alto plano · á sube · ǎ baja y sube · à baja · sin marca = neutro · «j» = h aspirada · «sh» = x · «ch» = q/zh · cada sílaba = un carácter"},
+  de:{label:"Alemán", tts:"de-DE", badge:"DE",
+      note:"Negrita = tónica · «sh» = sch · «ts» = z alemana · «iu» = ü · «e» = ö/ä aproximada · «j» = ch suave"},
+  it:{label:"Italiano", tts:"it-IT", badge:"IT",
+      note:"Negrita = tónica · «ch» = c de ceci · «dy» = g de giorno · «sh» = sce/sci · «ts» = z · las consonantes dobles se pronuncian dobles"}
+};
+const bookLang=b=>b.lang||"en";
+
+const BOOKS=[
+/* ---------- CLÁSICOS (dominio público / versión inglesa moderna) ---------- */
+{ id:"meditations", title:"Meditaciones", author:"Marco Aurelio", cat:"classic", numeral:"I",
+  pal:["#2b2136","#120e18"], emblem:"col",
+  desc:"El diario privado del emperador más poderoso del mundo. Versión inglesa moderna de pasajes de dominio público sobre el juicio, el deber y la serenidad.",
+  blocks:[
+  {r:"Libro II · 1", e:"Begin each day by telling yourself: today I shall meet people who are meddling, ungrateful, arrogant, dishonest, jealous and unfriendly.",
+   p:"bi**guín** ich déi bai **té**ling ior**sélf**: tu**déi** ai shal mit **pí**pul ju ar **mé**dling, an**gréit**ful, **á**rogant, dis**ó**nest, **yé**lus and an**frénd**li.",
+   s:"Comienza cada día diciéndote: hoy me encontraré con gente entrometida, ingrata, arrogante, deshonesta, celosa y hostil."},
+  {r:"Libro II · 1", e:"They act this way because they do not know what is good and what is evil.",
+   p:"Déi akt dis uéi bi**kóz** déi du not nóu juat is gud and juat is **í**vil.",
+   s:"Actúan así porque no saben distinguir lo que es bueno de lo que es malo."},
+  {r:"Libro IV · 3", e:"People seek retreats in the country, by the sea, or in the mountains; but you can retire into yourself whenever you choose.",
+   p:"**Pí**pul sik ri**tríts** in de **kán**tri, bai de si, or in de **máun**tens; bat iu kan ri**táier** **ín**tu ior**sélf** juen**é**ver iu chus.",
+   s:"La gente busca retiros en el campo, junto al mar o en las montañas; pero tú puedes retirarte a tu interior cuando quieras."},
+  {r:"Pasaje célebre · atribuido", e:"You have power over your mind, not outside events. Realize this, and you will find strength.",
+   p:"Iu jav **pá**uer **óu**ver ior máind, not áut**sáid** i**vénts**. **Rí**alais dis, and iu uil fáind strénz.",
+   s:"Tienes poder sobre tu mente, no sobre los sucesos externos. Date cuenta de esto y encontrarás la fuerza."},
+  {r:"Libro VI · 6", e:"The best revenge is not to become like the person who wronged you.",
+   p:"De best ri**vénch** is not tu bi**kám** láik de **pér**son ju rongd iu.",
+   s:"La mejor venganza es no volverte como la persona que te hizo daño."},
+  {r:"Libro VIII · 47", e:"If you are distressed by anything external, the pain is not due to the thing itself, but to your judgment about it.",
+   p:"If iu ar dis**trést** bai **é**nizing eks**tér**nal, de péin is not diu tu de zing it**sélf**, bat tu ior **yách**ment a**báut** it.",
+   s:"Si algo externo te angustia, el dolor no se debe a la cosa en sí, sino a tu juicio sobre ella."},
+  {r:"Libro VIII · 47", e:"And you have the power to revoke that judgment at any moment.",
+   p:"And iu jav de **pá**uer tu ri**vóuk** dat **yách**ment at **é**ni **móu**ment.",
+   s:"Y tienes el poder de revocar ese juicio en cualquier momento."},
+  {r:"Libro X · 16", e:"Waste no more time arguing about what a good man should be. Be one.",
+   p:"Uéist no mor táim **ár**guiuing a**báut** juat a gud man shud bi. Bi uan.",
+   s:"No pierdas más tiempo discutiendo cómo debe ser un hombre bueno. Sé uno."}
+]},
+{ id:"enchiridion", title:"Manual de vida", author:"Epicteto", cat:"classic", numeral:"II",
+  pal:["#1e2630","#0e1216"], emblem:"chain",
+  desc:"El Enquiridión: el manual de bolsillo del esclavo que se volvió maestro. Versión inglesa moderna de los aforismos de dominio público sobre el control y la libertad interior.",
+  blocks:[
+  {r:"§ 1 · La dicotomía", e:"Some things are within our power, while others are not.",
+   p:"Sam zings ar ui**dín** áuer **pá**uer, juáil **á**ders ar not.",
+   s:"Algunas cosas dependen de nosotros; otras no."},
+  {r:"§ 1 · Lo propio", e:"Within our power are opinion, motivation, desire, and aversion: whatever is our own doing.",
+   p:"Ui**dín** áuer **pá**uer ar o**pí**nion, móuti**véi**shon, di**sáier**, and a**vér**shon: juat**é**ver is áuer óun **dú**ing.",
+   s:"Dependen de nosotros la opinión, el impulso, el deseo y el rechazo: todo lo que es obra nuestra."},
+  {r:"§ 5 · El juicio", e:"People are disturbed not by things, but by the views they take of them.",
+   p:"**Pí**pul ar dis**térbd** not bai zings, bat bai de vius déi téik ov dem.",
+   s:"Las personas no se perturban por las cosas, sino por la opinión que tienen de ellas."},
+  {r:"§ 17 · El actor", e:"Remember that you are an actor in a drama, and your task is to play well the role you are given.",
+   p:"Ri**mém**ber dat iu ar an **ák**tor in a **drá**ma, and ior task is tu pléi uel de róul iu ar **gí**ven.",
+   s:"Recuerda que eres un actor en un drama, y tu tarea es representar bien el papel que te asignaron."},
+  {r:"§ 46 · Hechos, no palabras", e:"Never call yourself a philosopher; let your actions show your principles.",
+   p:"**Né**ver kol ior**sélf** a fi**ló**sofer; let ior **ák**shons shóu ior **prín**sipuls.",
+   s:"Nunca te llames filósofo; deja que tus acciones muestren tus principios."},
+  {r:"§ 8 · Desear lo que es", e:"Do not wish for things to happen as you want; wish for them to happen as they do, and your life will flow well.",
+   p:"Du not uish for zings tu **já**pen as iu uant; uish for dem tu **já**pen as déi du, and ior láif uil flóu uel.",
+   s:"No desees que las cosas ocurran como quieres; desea que ocurran como ocurren, y tu vida fluirá bien."},
+  {r:"§ 53 · Libertad", e:"Freedom comes not from satisfying your desires, but from removing them.",
+   p:"**Frí**dom kams not from **sá**tisfaiing ior di**sáiers**, bat from ri**mú**ving dem.",
+   s:"La libertad no llega al satisfacer tus deseos, sino al eliminarlos."}
+]},
+{ id:"letters", title:"Cartas a Lucilio", author:"Séneca", cat:"classic", numeral:"III",
+  pal:["#37231a","#170f09"], emblem:"hourglass",
+  desc:"Cartas de un estadista romano a su joven amigo. Texto inglés de la traducción clásica de Richard Gummere (1917, dominio público).",
+  blocks:[
+  {r:"Carta 1 · El tiempo", e:"It is not that we have a short time to live, but that we waste a lot of it.",
+   p:"It is not dat ui jav a short táim tu liv, bat dat ui uéist a lot ov it.",
+   s:"No es que tengamos poco tiempo para vivir, sino que desperdiciamos mucho."},
+  {r:"Carta 1 · La prisa", e:"While we are postponing, life speeds by.",
+   p:"Juáil ui ar post**póu**ning, láif spids bai.",
+   s:"Mientras lo posponemos, la vida pasa veloz."},
+  {r:"Carta 2 · La pobreza", e:"It is not the man who has too little, but the man who craves more, that is poor.",
+   p:"It is not de man ju jas tu **lí**tul, bat de man ju kréivs mor, dat is pur.",
+   s:"No es pobre el que tiene demasiado poco, sino el que ansía más."},
+  {r:"Carta 13 · El miedo", e:"We suffer more often in imagination than in reality.",
+   p:"Ui **sá**fer mor **ó**fen in i**má**yi**néi**shon dan in ri**á**liti.",
+   s:"Sufrimos más a menudo en la imaginación que en la realidad."},
+  {r:"Carta 78 · El coraje", e:"Sometimes even to live is an act of courage.",
+   p:"**Sám**taims **í**ven tu liv is an akt ov **ké**rich.",
+   s:"A veces, incluso vivir es un acto de coraje."},
+  {r:"Carta 71 · El rumbo", e:"If you do not know which port you are sailing to, no wind is favorable.",
+   p:"If iu du not nóu juich port iu ar **séi**ling tu, no uind is **féi**vorabul.",
+   s:"Si no sabes a qué puerto navegas, ningún viento es favorable."},
+  {r:"Carta 7 · La compañía", e:"Associate with people who can make you better; welcome those you can help improve.",
+   p:"A**sóu**shieit uidh **pí**pul ju kan méik iu **bé**ter; **uél**kam dóus iu kan jelp im**prúv**.",
+   s:"Rodéate de personas que puedan hacerte mejor; acoge a quienes tú puedas ayudar a mejorar."}
+]},
+/* ---------- MODERNOS (lecciones originales inspiradas, sin texto con copyright) ---------- */
+{ id:"lives", title:"Vidas de los estoicos", author:"Ryan Holiday · Stephen Hanselman", cat:"modern", numeral:"IV",
+  pal:["#242d1c","#11150c"], emblem:"flame",
+  desc:"La filosofía contada como biografías de personas reales en crisis reales. Lecciones de práctica originales inspiradas en los personajes e ideas del libro (no extractos literales).",
+  blocks:[
+  {r:"Lección 1 · Zenón de Citio", e:"When Zeno lost everything in a shipwreck, he turned disaster into direction: he walked into Athens and began to study philosophy.",
+   p:"Juen **zí**no lost **év**rizinq in a **shíp**rek, ji ternd di**zás**ter **ín**tu dai**rék**shon: ji uokt **ín**tu **á**zens and bi**gán** tu **stá**di fi**ló**sofi.",
+   s:"Cuando Zenón lo perdió todo en un naufragio, convirtió el desastre en dirección: entró en Atenas y comenzó a estudiar filosofía."},
+  {r:"Lección 2 · Catón", e:"Cato practiced poverty on purpose: he walked barefoot and wore simple clothes, training himself to fear no hardship.",
+   p:"**Kéi**to **prák**tist **pó**verti on **pér**pos: ji uokt **bér**fut and uor **sím**pul klóuds, **tréi**ning jim**sélf** tu fir no **járd**ship.",
+   s:"Catón practicaba la pobreza a propósito: caminaba descalzo y vestía ropa simple, entrenándose para no temer ninguna dureza."},
+  {r:"Lección 3 · Epicteto", e:"Epictetus was born a slave and walked with a limp, yet he taught that no master can own the freedom of your mind.",
+   p:"Epik**tí**tus uas born a sléiv and uokt uidh a limp, yet ji tot dat no **más**ter kan óun de **frí**dom ov ior máind.",
+   s:"Epicteto nació esclavo y caminaba cojeando, y aun así enseñó que ningún amo puede poseer la libertad de tu mente."},
+  {r:"Lección 4 · Séneca", e:"Seneca was one of the richest men in Rome, and he understood the danger: wealth must be a servant, never a master.",
+   p:"**Sé**neka uas uan ov de **rí**chest men in róum, and ji ander**stúd** de **déin**yer: uelz mast bi a **sér**vant, **né**ver a **más**ter.",
+   s:"Séneca fue uno de los hombres más ricos de Roma, y entendía el peligro: la riqueza debe ser una sirvienta, nunca un amo."},
+  {r:"Lección 5 · Marco Aurelio", e:"Marcus Aurelius ruled the known world, yet he wrote private notes to himself about humility, patience, and duty.",
+   p:"**Már**kus o**rí**lius ruld de nóun uerld, yet ji róut **prái**vat nóuts tu jim**sélf** a**báut** jiu**mí**liti, **péi**shens, and **diú**ti.",
+   s:"Marco Aurelio gobernaba el mundo conocido, y sin embargo se escribía notas privadas sobre humildad, paciencia y deber."},
+  {r:"Lección 6 · James Stockdale", e:"James Stockdale carried Epictetus in his memory through years as a prisoner of war, proving that philosophy can survive anything.",
+   p:"Yéims **Stók**deil **ká**rid Epik**tí**tus in jis **mé**mori zru yirs as a **prí**soner ov uor, **prú**ving dat fi**ló**sofi kan ser**váiv** **é**nizing.",
+   s:"James Stockdale llevó a Epicteto en su memoria durante años como prisionero de guerra, demostrando que la filosofía puede sobrevivir a cualquier cosa."},
+  {r:"Lección 7 · La conclusión", e:"The lesson of these lives is simple: stoicism is not a theory; it is a practice, repeated by real people in real crises.",
+   p:"De **lé**son ov dis láivs is **sím**pul: **stó**uisism is not a **zí**ori; it is a **prák**tis, ri**pí**ted bai ríal **pí**pul in ríal **crái**sis.",
+   s:"La lección de estas vidas es simple: el estoicismo no es una teoría; es una práctica, repetida por personas reales en crisis reales."}
+]},
+{ id:"littlebook", title:"El pequeño libro del estoicismo", author:"Jonas Salzgeber", cat:"modern", numeral:"V",
+  pal:["#332c1e","#17130d"], emblem:"arrow",
+  desc:"El estoicismo como kit práctico: el triángulo de la felicidad, la arquera y el amor fati. Lecciones de práctica originales inspiradas en los conceptos del libro (no extractos literales).",
+  blocks:[
+  {r:"Lección 1 · El triángulo", e:"The heart of stoicism is a simple triangle: live with virtue, focus on what you control, and take responsibility for your choices.",
+   p:"De jart ov **stó**uisism is a **sím**pul **trái**angul: liv uidh **vér**tiu, **fóu**kas on juat iu kon**tróul**, and téik ris**pón**sabi**lí**ti for ior **chó**ises.",
+   s:"El corazón del estoicismo es un triángulo simple: vive con virtud, enfócate en lo que controlas y hazte responsable de tus elecciones."},
+  {r:"Lección 2 · La arquera", e:"Imagine an archer: she controls the training, the bow, and the aim, but once the arrow flies, the wind is no longer hers.",
+   p:"I**má**yin an **ár**cher: shi kon**tróuls** de **tréi**ning, de bóu, and di éim, bat uans di **á**rou fláis, de uind is no **lóng**ger jers.",
+   s:"Imagina a una arquera: controla el entrenamiento, el arco y la puntería, pero una vez que la flecha vuela, el viento ya no es suyo."},
+  {r:"Lección 3 · Disparar bien", e:"Success, for a stoic archer, is not hitting the target; it is shooting well.",
+   p:"Sak**sés**, for a **stó**uik **ár**cher, is not **jí**ting de **tár**guet; it is **shú**ting uel.",
+   s:"El éxito, para una arquera estoica, no es dar en el blanco; es disparar bien."},
+  {r:"Lección 4 · Visualización negativa", e:"Practice negative visualization: imagine losing what you love, not to suffer, but to remember that it was never guaranteed.",
+   p:"**Prák**tis **né**gativ visualai**zéi**shon: i**má**yin **lú**sing juat iu lav, not tu **sá**fer, bat tu ri**mém**ber dat it uas **né**ver garan**tíd**.",
+   s:"Practica la visualización negativa: imagina perder lo que amas, no para sufrir, sino para recordar que nunca estuvo garantizado."},
+  {r:"Lección 5 · Amor fati", e:"Amor fati means loving your fate: do not merely accept what happens; embrace it as the material of your life.",
+   p:"**Á**mor **fá**ti mins **lá**ving ior féit: du not **mír**li ak**sépt** juat **já**pens; im**bréis** it as de ma**tí**rial ov ior láif.",
+   s:"Amor fati significa amar tu destino: no te limites a aceptar lo que pasa; abrázalo como el material de tu vida."},
+  {r:"Lección 6 · La pausa", e:"Every event offers a pause before your reaction; train that pause, because your freedom lives inside it.",
+   p:"**Év**ri i**vént** **ó**fers a póz bi**fór** ior ri**ák**shon; tréin dat póz, bi**kóz** ior **frí**dom livs in**sáid** it.",
+   s:"Cada suceso ofrece una pausa antes de tu reacción; entrena esa pausa, porque tu libertad vive dentro de ella."},
+  {r:"Lección 7 · Eudaimonía", e:"Eudaimonia is the smooth flow of life: not constant pleasure, but a good relationship with your own choices.",
+   p:"Iudai**mó**nia is de smudh flóu ov láif: not **kóns**tant **plé**yer, bat a gud ri**léi**shonship uidh ior óun **chó**ises.",
+   s:"La eudaimonía es el fluir sereno de la vida: no un placer constante, sino una buena relación con tus propias elecciones."}
+]},
+{ id:"howtobe", title:"Cómo ser un estoico", author:"Massimo Pigliucci", cat:"modern", numeral:"VI",
+  pal:["#1c2a38","#0d1319"], emblem:"bubbles",
+  desc:"Un filósofo contemporáneo cena con Epicteto: las tres disciplinas y las cuatro virtudes. Lecciones de práctica originales inspiradas en las ideas del libro (no extractos literales).",
+  blocks:[
+  {r:"Lección 1 · La cena", e:"Pigliucci imagines a dinner with Epictetus, and the old teacher smiles: philosophy is not a lecture; it is a way of living.",
+   p:"Pi**lyú**chi i**má**yins a **dí**ner uidh Epik**tí**tus, and di óuld **tí**cher smáils: fi**ló**sofi is not a **lék**cher; it is a uéi ov **lí**ving.",
+   s:"Pigliucci imagina una cena con Epicteto, y el viejo maestro sonríe: la filosofía no es una conferencia; es una forma de vivir."},
+  {r:"Lección 2 · Disciplina del deseo", e:"The discipline of desire teaches you to want what is truly up to you, and to accept the rest with a calm heart.",
+   p:"De **dí**siplin ov di**sáier** **tí**ches iu tu uant juat is **trú**li ap tu iu, and tu ak**sépt** de rest uidh a kam jart.",
+   s:"La disciplina del deseo te enseña a querer lo que de verdad depende de ti, y a aceptar el resto con un corazón sereno."},
+  {r:"Lección 3 · Disciplina de la acción", e:"The discipline of action asks one question in every situation: how can I act with justice and kindness toward others?",
+   p:"De **dí**siplin ov **ák**shon asks uan **kués**chon in **év**ri situ**éi**shon: jáu kan ai akt uidh **yás**tis and **káind**nes tu**órd** **á**ders?",
+   s:"La disciplina de la acción hace una pregunta en cada situación: ¿cómo puedo actuar con justicia y amabilidad hacia los demás?"},
+  {r:"Lección 4 · Disciplina del asentimiento", e:"The discipline of assent trains your mind to pause before judging, and to test every impression before believing it.",
+   p:"De **dí**siplin ov a**sént** tréins ior máind tu póz bi**fór** **yá**ying, and tu test **év**ri im**pré**shon bi**fór** bi**lí**ving it.",
+   s:"La disciplina del asentimiento entrena tu mente para pausar antes de juzgar, y examinar cada impresión antes de creerla."},
+  {r:"Lección 5 · Las cuatro virtudes", e:"Four virtues guide the stoic path: wisdom to choose, courage to endure, justice to share, and temperance to measure.",
+   p:"For **vér**tius gáid de **stó**uik paz: **uís**dom tu chus, **ké**rich tu en**diúr**, **yás**tis tu sher, and **tém**perans tu **mé**yer.",
+   s:"Cuatro virtudes guían el camino estoico: sabiduría para elegir, coraje para resistir, justicia para compartir y templanza para medir."},
+  {r:"Lección 6 · Progreso, no perfección", e:"You do not need to be perfect; a stoic is simply someone who keeps trying to be a little better than yesterday.",
+   p:"Iu du not nid tu bi **pér**fekt; a **stó**uik is **símp**li **sám**uan ju kips **trái**ing tu bi a **lí**tul **bé**ter dan **yés**terdei.",
+   s:"No necesitas ser perfecto; un estoico es simplemente alguien que sigue intentando ser un poco mejor que ayer."},
+  {r:"Lección 7 · El examen nocturno", e:"Each evening, ask yourself three questions: what did I do wrong, what did I do well, and what could I improve?",
+   p:"Ich **ív**ning, ask ior**sélf** zri **kués**chons: juat did ai du rong, juat did ai du uel, and juat kud ai im**prúv**?",
+   s:"Cada noche, hazte tres preguntas: ¿qué hice mal, qué hice bien y qué podría mejorar?"}
+]},
+{ id:"goodlife", title:"El arte de la buena vida", author:"William B. Irvine", cat:"modern", numeral:"VII",
+  pal:["#3a2b1c","#191108"], emblem:"sunrise",
+  desc:"Técnicas psicológicas para la tranquilidad. Lecciones de práctica originales inspiradas en las técnicas del libro (no extractos literales).",
+  blocks:[
+  {r:"Técnica 1 · Visualizar la pérdida", e:"The central tool is negative visualization: spend a moment imagining that you have already lost the things you value.",
+   p:"De **sén**tral tul is **né**gativ visualai**zéi**shon: spend a **móu**ment i**má**yining dat iu jav ol**ré**di lost de zings iu **vá**liu.",
+   s:"La herramienta central es la visualización negativa: dedica un momento a imaginar que ya has perdido las cosas que valoras."},
+  {r:"Técnica 2 · El mundo prestado", e:"When you open your eyes, the ordinary world returns as a gift: your coffee, your street, your people, all of it borrowed.",
+   p:"Juen iu **óu**pen ior áis, di **ór**dineri uerld ri**térns** as a guift: ior **kó**fi, ior strit, ior **pí**pul, ol ov it **bó**roud.",
+   s:"Cuando abres los ojos, el mundo ordinario regresa como un regalo: tu café, tu calle, tu gente, todo prestado."},
+  {r:"Técnica 3 · El pasado", e:"Do not waste your present wishing for a different past; no effort can change what has already happened.",
+   p:"Du not uéist ior **pré**sent **uí**shing for a **dí**frent past; no **é**fort kan chéinj juat jas ol**ré**di **já**pend.",
+   s:"No desperdicies tu presente deseando un pasado distinto; ningún esfuerzo puede cambiar lo que ya ocurrió."},
+  {r:"Técnica 4 · Incomodidad voluntaria", e:"Practice small discomforts on purpose: a cold shower, a skipped dessert, a silent walk; you are proving that comfort is optional.",
+   p:"**Prák**tis smol dis**kám**forts on **pér**pos: a kóuld **shá**uer, a skipt di**zért**, a **sái**lent uok; iu ar **prú**ving dat **kám**fort is **óp**shonal.",
+   s:"Practica pequeñas incomodidades a propósito: una ducha fría, un postre omitido, un paseo en silencio; estás demostrando que la comodidad es opcional."},
+  {r:"Técnica 5 · La última vez", e:"Imagine that this is your last time doing something, and suddenly an ordinary moment becomes unrepeatable.",
+   p:"I**má**yin dat dis is ior last táim **dú**ing **sám**zing, and **sá**denli an **ór**dineri **móu**ment bi**káms** anri**pí**tabul.",
+   s:"Imagina que esta es la última vez que haces algo, y de pronto un momento ordinario se vuelve irrepetible."},
+  {r:"Técnica 6 · Desear lo que tienes", e:"The goal is not to want nothing; it is to want the things you already have.",
+   p:"De góul is not tu uant **ná**zing; it is tu uant de zings iu ol**ré**di jav.",
+   s:"La meta no es no desear nada; es desear las cosas que ya tienes."},
+  {r:"Técnica 7 · Tranquilidad", e:"Tranquility is not the absence of emotion; it is the absence of the negative emotions you create yourself.",
+   p:"Tran**kuí**liti is not di **áb**sens ov i**móu**shon; it is di **áb**sens ov de **né**gativ i**móu**shons iu kri**éit** ior**sélf**.",
+   s:"La tranquilidad no es la ausencia de emoción; es la ausencia de las emociones negativas que tú mismo creas."}
+]},
+/* ---------- COMUNICACIÓN EMPRESARIAL ---------- */
+{ id:"bizcomm", title:"Comunicación en la empresa", author:"Guía STOIC VOICE · Business English", cat:"business", numeral:"VIII",
+  pal:["#1f2a33","#0e141a"], emblem:"briefcase",
+  desc:"El inglés real de la oficina: reuniones, correos, plazos, feedback, negociación y llamadas. Frases originales de práctica profesional listas para usar mañana en tu trabajo.",
+  blocks:[
+  {r:"Reuniones · Meetings", e:"Let's keep this meeting short: one goal, one decision, one owner for each task.",
+   p:"Lets kip dis **mí**ting short: uan góul, uan di**sí**shon, uan **óu**ner for ich task.",
+   s:"Mantengamos esta reunión breve: un objetivo, una decisión y un responsable por tarea."},
+  {r:"Correos · Emails", e:"I am writing to follow up on our conversation and confirm the next steps.",
+   p:"Ai am **rái**ting tu **fó**lou ap on áuer konver**séi**shon and kon**férm** de nekst steps.",
+   s:"Le escribo para dar seguimiento a nuestra conversación y confirmar los próximos pasos."},
+  {r:"Plazos · Deadlines", e:"We are on track to deliver the report by Friday, before the end of the day.",
+   p:"Ui ar on trak tu di**lí**ver de ri**pórt** bai **frái**dei, bi**fór** di end ov de déi.",
+   s:"Vamos en camino de entregar el informe el viernes, antes del final del día."},
+  {r:"Feedback · Retroalimentación", e:"Your presentation was clear and persuasive; next time, add one slide with the numbers.",
+   p:"Ior presen**téi**shon uas klir and per**suéi**siv; nekst táim, ad uan sláid uidh de **nám**bers.",
+   s:"Tu presentación fue clara y persuasiva; la próxima vez, añade una diapositiva con los números."},
+  {r:"Negociación · Negotiation", e:"If you can move on the price, we can sign the contract this week.",
+   p:"If iu kan muv on de práis, ui kan sáin de **kón**trakt dis uik.",
+   s:"Si pueden moverse en el precio, podemos firmar el contrato esta semana."},
+  {r:"Small talk · Pasillo", e:"How was your weekend? Did you finally try that new restaurant near the office?",
+   p:"Jáu uas ior **uí**kend? Did iu **fái**nali trái dat niu **rés**torant nir di **ó**fis?",
+   s:"¿Qué tal tu fin de semana? ¿Por fin probaste el restaurante nuevo cerca de la oficina?"},
+  {r:"Llamadas · Calls", e:"Sorry, you are breaking up; let me call you back on a better line.",
+   p:"**Só**ri, iu ar **bréi**king ap; let mi kol iu bak on a **bé**ter láin.",
+   s:"Perdona, se entrecorta tu voz; déjame devolverte la llamada en una línea mejor."},
+  {r:"Presentaciones · Presenting", e:"Today I will show you three things: the problem, our solution, and the results.",
+   p:"Tu**déi** ai uil shóu iu zri zings: de **pró**blem, áuer so**lú**shon, and de ri**zálts**.",
+   s:"Hoy les mostraré tres cosas: el problema, nuestra solución y los resultados."}
+]},
+{ id:"carnegie", title:"Cómo ganar amigos e influir en las personas", author:"Dale Carnegie", cat:"business", numeral:"IX",
+  pal:["#33222a","#170f13"], emblem:"bubbles",
+  desc:"El clásico de las relaciones humanas aplicado a la empresa: aprecio sincero, escucha, nombres y crítica inteligente. Lecciones de práctica originales inspiradas en las ideas del libro (no extractos literales).",
+  blocks:[
+  {r:"Principio 1 · No critiques", e:"Do not criticize, condemn, or complain; people defend their pride before they accept your logic.",
+   p:"Du not **krí**tisais, kon**dém**, or kom**pléin**; **pí**pul di**fénd** der práid bi**fór** déi ak**sépt** ior **ló**yik.",
+   s:"No critiques, no condenes ni te quejes; la gente defiende su orgullo antes de aceptar tu lógica."},
+  {r:"Principio 2 · Aprecio sincero", e:"Give honest appreciation: praise is to the human spirit what sunlight is to a plant.",
+   p:"Guiv **ó**nest apri**shiéi**shon: préis is tu de **jiú**man **spí**rit juat **sán**lait is tu a plant.",
+   s:"Da aprecio sincero: el elogio es para el espíritu humano lo que el sol para una planta."},
+  {r:"Principio 3 · Los nombres", e:"Remember names: a person's name is, to that person, the sweetest sound in any language.",
+   p:"Ri**mém**ber néims: a **pér**sons néim is, tu dat **pér**son, de **suí**test sáund in **é**ni **láng**güich.",
+   s:"Recuerda los nombres: el nombre de una persona es, para ella, el sonido más dulce en cualquier idioma."},
+  {r:"Principio 4 · Escuchar", e:"Be a good listener: encourage others to talk about themselves, and they will call you brilliant.",
+   p:"Bi a gud **lí**sener: en**ká**rich **á**ders tu tok a**báut** dem**sélvz**, and déi uil kol iu **brí**liant.",
+   s:"Sé un buen oyente: anima a los demás a hablar de sí mismos y te llamarán brillante."},
+  {r:"Principio 5 · Admite el error", e:"If you are wrong, admit it quickly and emphatically; it disarms anger better than any excuse.",
+   p:"If iu ar rong, ad**mít** it **kuí**kli and em**fá**tikali; it dis**árms** **áng**ger **bé**ter dan **é**ni eks**kiús**.",
+   s:"Si te equivocas, admítelo rápido y con firmeza; desarma el enojo mejor que cualquier excusa."},
+  {r:"Principio 6 · Salvar las apariencias", e:"Let the other person save face; a wounded pride heals slower than a lost deal.",
+   p:"Let di **á**der **pér**son séiv féis; a **ú**nded práid jils **sló**uer dan a lost dil.",
+   s:"Deja que la otra persona salve las apariencias; un orgullo herido sana más lento que un trato perdido."}
+]},
+/* ---------- IDIOMAS DEL MUNDO (fonética adaptada al español) ---------- */
+{ id:"zhbiz", title:"Chino mandarín de negocios", author:"Guía STOIC VOICE · 商务中文", cat:"world", lang:"zh", numeral:"X",
+  pal:["#3a1f1f","#180c0c"], emblem:"coinzh",
+  desc:"Las frases esenciales del chino profesional: saludos, reuniones, tarjetas, precios y colaboración. Fonética adaptada al español con los cuatro tonos marcados (ā á ǎ à). Cada sílaba corresponde a un carácter.",
+  blocks:[
+  {r:"Saludo · 问候", e:"你好，很高兴认识你。",
+   p:"nǐ jǎo, jěn gāo shìng rèn shi nǐ.",
+   s:"Hola, encantado de conocerte."},
+  {r:"Tu puesto · 职位", e:"我是项目经理。",
+   p:"wǒ shì shiàng mù jīng lǐ.",
+   s:"Soy gerente de proyectos."},
+  {r:"La reunión · 会议", e:"我们开会吧。",
+   p:"wǒ men kāi jùi ba.",
+   s:"Empecemos la reunión."},
+  {r:"La tarjeta · 名片", e:"这是我的名片。",
+   p:"chè shì wǒ de míng pièn.",
+   s:"Esta es mi tarjeta de presentación."},
+  {r:"El precio · 价格", e:"可以便宜一点吗？",
+   p:"kě yǐ pián yi yì diǎn ma?",
+   s:"¿Puede ser un poco más barato?"},
+  {r:"El correo · 邮件", e:"请给我发邮件。",
+   p:"chǐng gěi wǒ fā yóu jièn.",
+   s:"Por favor, envíeme un correo electrónico."},
+  {r:"Colaboración · 合作", e:"谢谢你的帮助，合作愉快。",
+   p:"shiè shie nǐ de bāng chù, jé zuò yú kuài.",
+   s:"Gracias por tu ayuda; que tengamos una buena colaboración."}
+]},
+{ id:"debiz", title:"Alemán para el trabajo", author:"Guía STOIC VOICE · Geschäftsdeutsch", cat:"world", lang:"de", numeral:"XI",
+  pal:["#2a2a1e","#13130c"], emblem:"gate",
+  desc:"El alemán de la oficina y los negocios: presentarse, concertar citas, horarios y agradecimientos. Fonética adaptada al español (sch→sh, z→ts, ü→iu).",
+  blocks:[
+  {r:"Saludo formal · Begrüßung", e:"Guten Tag, wie geht es Ihnen?",
+   p:"**Gú**ten tak, vi guet es **í**nen?",
+   s:"Buenos días, ¿cómo está usted?"},
+  {r:"Presentarse · Vorstellung", e:"Ich arbeite bei einer Firma.",
+   p:"Ij **ár**bajte bai **ái**ner **fír**ma.",
+   s:"Trabajo en una empresa."},
+  {r:"La cita · Der Termin", e:"Können wir einen Termin vereinbaren?",
+   p:"**Ké**nen vir **ái**nen ter**mín** fer**áin**baren?",
+   s:"¿Podemos acordar una cita?"},
+  {r:"El correo · Die E-Mail", e:"Bitte senden Sie mir eine E-Mail.",
+   p:"**Bí**te **tsén**den zi mir **ái**ne **í**-meil.",
+   s:"Por favor, envíeme un correo electrónico."},
+  {r:"El horario · Der Zeitplan", e:"Die Besprechung beginnt um neun Uhr.",
+   p:"Di be**shpré**jung be**guínt** um nóin ur.",
+   s:"La reunión empieza a las nueve."},
+  {r:"Agradecer · Danken", e:"Vielen Dank für Ihre Hilfe.",
+   p:"**Fí**len dank fiur **í**re **jíl**fe.",
+   s:"Muchas gracias por su ayuda."},
+  {r:"Colaboración · Zusammenarbeit", e:"Ich freue mich auf die Zusammenarbeit.",
+   p:"Ij **frói**e mij áuf di tsu**zá**men**ár**bajt.",
+   s:"Espero con gusto nuestra colaboración."}
+]},
+{ id:"itbiz", title:"Italiano profesional", author:"Guía STOIC VOICE · Italiano per il lavoro", cat:"world", lang:"it", numeral:"XII",
+  pal:["#1e2e26","#0d1512"], emblem:"dome",
+  desc:"El italiano del trabajo: cortesía formal, reuniones, correos y agradecimientos. Fonética adaptada al español (ce/ci→che/chi, gn→ñ, gli→li, z→ts).",
+  blocks:[
+  {r:"Saludo formal · Salutare", e:"Buongiorno, come sta?",
+   p:"Buon**dyór**no, **kó**me sta?",
+   s:"Buenos días, ¿cómo está usted?"},
+  {r:"Presentarse · Presentarsi", e:"Lavoro in un'azienda italiana.",
+   p:"La**vó**ro in un a**dzién**da ita**liá**na.",
+   s:"Trabajo en una empresa italiana."},
+  {r:"La reunión · La riunione", e:"Possiamo fissare una riunione?",
+   p:"Pos**siá**mo fis**sá**re una riu**nió**ne?",
+   s:"¿Podemos fijar una reunión?"},
+  {r:"El correo · L'email", e:"Mi mandi una email, per favore.",
+   p:"Mi **mán**di una **í**meil, per fa**vó**re.",
+   s:"Envíeme un correo, por favor."},
+  {r:"El horario · L'orario", e:"La riunione inizia alle nove.",
+   p:"La riu**nió**ne in**í**tsia **ál**le **nó**ve.",
+   s:"La reunión empieza a las nueve."},
+  {r:"Agradecer · Ringraziare", e:"Grazie mille per il suo aiuto.",
+   p:"**Grá**tsie **míl**le per il **sú**o a**iú**to.",
+   s:"Mil gracias por su ayuda."},
+  {r:"Despedida · Congedarsi", e:"Piacere di conoscerla, arrivederci.",
+   p:"Pia**ché**re di ko**nó**sherla, arrive**dér**chi.",
+   s:"Un placer conocerle, hasta luego."}
+]}
+];
+
+const QUOTES=[
+  {t:"La felicidad de tu vida depende de la calidad de tus pensamientos.", a:"Marco Aurelio"},
+  {t:"No es que tengamos poco tiempo, sino que perdemos mucho.", a:"Séneca"},
+  {t:"La riqueza no consiste en tener muchas posesiones, sino en tener pocos deseos.", a:"Epicteto"},
+  {t:"Sufrimos más en la imaginación que en la realidad.", a:"Séneca"},
+  {t:"Ningún viento es favorable si no sabes a qué puerto navegas.", a:"Séneca"},
+  {t:"La mejor venganza es no parecerte a quien te hizo daño.", a:"Marco Aurelio"},
+  {t:"Primero dite a ti mismo qué quieres ser; luego haz lo que tengas que hacer.", a:"Epicteto"},
+  {t:"Haz cada cosa como si fuera la última de tu vida.", a:"Marco Aurelio"},
+  {t:"El obstáculo en el camino se convierte en el camino.", a:"Proverbio estoico"},
+  {t:"Nadie es libre si no es dueño de sí mismo.", a:"Epicteto"}
+];
+
+/* ---- Diccionarios fonéticos para textos propios ---- */
+const PHON_DICT={};
+`the:de a:e an:an and:and or:or but:bat if:if of:ov to:tu in:in on:on at:at by:bai for:for with:uidh from:from as:as is:is are:ar was:uas were:uer be:bi been:bin being:**bí**ing am:am do:du does:das did:did done:dan have:jav has:jas had:jad will:uil would:ud can:kan could:kud shall:shal should:shud may:méi might:máit must:mast not:not no:nóu yes:yes you:iu your:ior i:ai me:mi my:mái we:ui our:áuer us:as they:déi them:dem their:der he:ji him:jim his:jis she:shi her:jer it:it its:its this:dis that:dat these:dis those:dóus what:juat when:juen where:juer which:juich who:ju why:juái how:jáu all:ol any:**é**ni some:sam every:**év**ri each:ich many:**mé**ni much:mach more:mor most:móust less:les few:fiu one:uan two:tu three:zri four:for five:fáiv six:siks seven:**sé**ven eight:éit nine:náin ten:ten time:táim day:déi today:tu**déi** tomorrow:tu**mó**rou yesterday:**yés**terdei life:láif live:liv living:**lí**ving world:uerld mind:máind heart:jart soul:sóul man:man men:men woman:**uú**man people:**pí**pul person:**pér**son thing:zing things:zings something:**sám**zing nothing:**ná**zing everything:**év**rizinq good:gud bad:bad better:**bé**ter best:best great:gréit small:smol little:**lí**tul big:big long:long short:short new:niu old:óuld true:tru truth:truz real:ríal way:uéi work:uerk want:uant need:nid know:nóu think:zink thought:zot feel:fil see:si look:luk hear:jir listen:**lí**sen say:séi said:sed tell:tel speak:spik talk:tok ask:ask answer:**án**ser give:guiv take:téik make:méik made:méid find:fáind keep:kip let:let put:put come:kam go:góu going:**góu**ing get:guet become:bi**kám** begin:bi**guín** end:end start:start stop:stop try:trái learn:lern teach:tich study:**stá**di read:rid write:ráit love:lav hate:jéit fear:fir hope:jóup wish:uish dream:drim believe:bi**liv** remember:ri**mém**ber forget:for**guét** understand:ander**stánd** change:chéinch choose:chus choice:chóis control:kon**tróul** power:**pá**uer free:frí freedom:**frí**dom peace:pis calm:kam quiet:**kuá**iet strong:strong strength:strénz wise:uáis wisdom:**uís**dom courage:**ké**rich justice:**yás**tis virtue:**vér**tiu fate:féit death:dez die:dái nature:**néi**cher reason:**rí**son action:**ák**shon act:akt habit:**já**bit practice:**prák**tis patience:**péi**shens anger:**áng**ger joy:yói happy:**já**pi pain:péin suffer:**sá**fer lose:luz lost:lost win:uin fail:féil success:sak**sés** money:**má**ni rich:rich poor:pur friend:frend enemy:**é**nemi family:**fá**mili home:jóum house:jáus water:**uó**ter fire:fáier air:er earth:erz sun:san moon:mun star:star sea:si wind:uind mountain:**máun**ten body:**bó**di head:jed hand:jand eye:ái eyes:áis face:féis voice:vóis word:uerd words:uerds name:néim book:buk story:**stó**ri question:**kués**chon moment:**móu**ment year:yir years:yirs hour:áuer night:náit morning:**mór**ning evening:**ív**ning again:a**guén** always:**ól**ueis never:**né**ver often:**ó**fen sometimes:**sám**taims now:náu then:den here:jir there:der up:ap down:dáun out:áut off:of over:**óu**ver under:**án**der before:bi**fór** after:**áf**ter between:bi**tuín** through:zru into:**ín**tu about:a**báut** because:bi**kóz** so:sóu than:dan only:**óun**li just:yast very:**vé**ri too:tu also:**ól**sou even:**í**ven still:stil already:ol**ré**di ever:**é**ver once:uans first:ferst last:last next:nekst other:**á**der others:**á**ders another:a**ná**der own:óun same:séim different:**dí**frent right:ráit wrong:rong well:uel enough:i**náf** together:tu**gué**der alone:a**lóun** away:a**uéi** back:bak far:far near:nir high:jái low:lóu deep:dip open:**óu**pen close:klóus hard:jard easy:**í**si simple:**sím**pul possible:**pó**sibul important:im**pór**tant beautiful:**biú**tiful young:iang kind:káind proud:práud humble:**jám**bul brave:bréiv afraid:a**fréid** angry:**áng**gri tired:táierd alive:a**láiv** dead:ded human:**jiú**man philosophy:fi**ló**sofi stoic:**stó**uik emperor:**ém**peror slave:sléiv teacher:**tí**cher student:**stú**dent school:skul city:**sí**ti war:uor prison:**prí**son wealth:uelz health:jelz luck:lak purpose:**pér**pos meaning:**mí**ning value:**vá**liu goal:góul effort:**é**fort result:ri**zált** target:**tár**guet arrow:**á**rou bow:bóu aim:éim imagine:i**má**yin within:ui**dín** without:ui**dáut** while:juáil until:an**tíl** against:a**guénst** toward:tu**órd** upon:a**pón** among:a**máng** across:a**krós** behind:bi**jáind** beyond:bi**iónd** during:**diú**ring despite:dis**páit** perhaps:per**jáps** maybe:**méi**bi actually:**ák**chuali truly:**trú**li simply:**símp**li merely:**mír**li suddenly:**sá**denli ordinary:**ór**dineri negative:**né**gativ emotion:i**móu**shon emotions:i**móu**shons tranquility:tran**kuí**liti desire:di**sáier** desires:di**sáiers** judgment:**yách**ment impression:im**pré**shon impressions:im**pré**shons discipline:**dí**siplin accept:ak**sépt** embrace:im**bréis** happen:**já**pen happens:**já**pens happened:**já**pend meeting:**mí**ting email:**í**meil report:ri**pórt** contract:**kón**trakt price:práis office:**ó**fis team:tim boss:bos client:**klá**ient deadline:**déd**lain presentation:presen**téi**shon`
+.split(/\s+/).forEach(pair=>{const i=pair.indexOf(":"); if(i>0) PHON_DICT[pair.slice(0,i)]=pair.slice(i+1);});
+
+const DE_DICT={};
+`guten:**gú**ten tag:tak ich:ij sie:zi wir:vir und:unt der:der die:di das:das ist:ist ein:ain eine:**ái**ne bitte:**bí**te danke:**dán**ke ja:ya nein:nain wie:vi was:vas wo:vo wann:van warum:va**rúm** herr:jér frau:frau firma:**fír**ma arbeit:**ár**bajt termin:ter**mín** meeting:**mí**ting email:**í**meil chef:shef kollege:ko**lé**ge büro:biu**ró** geld:gelt zeit:tsait heute:**jói**te morgen:**mór**gen gestern:**gés**tern uhr:ur stunde:**shtún**de minute:mi**nú**te woche:**vó**je monat:**mó**nat jahr:yar gut:gut sehr:zer viel:fil wenig:**vé**nig mehr:mer können:**ké**nen müssen:**mí**sen wollen:**vó**len machen:**má**jen arbeiten:**ár**bajten sprechen:**shpré**jen schreiben:**shrái**ben lesen:**lé**zen essen:**é**sen trinken:**trín**ken wasser:**vá**ser kaffee:**ká**fe tee:te brot:brot haus:jaus freund:fróint familie:fa**mí**lie name:**ná**me hallo:ha**ló** auf:auf wiedersehen:**ví**derzejen`
+.split(/\s+/).forEach(pair=>{const i=pair.indexOf(":"); if(i>0) DE_DICT[pair.slice(0,i)]=pair.slice(i+1);});
+
+const IT_DICT={};
+`buongiorno:buon**dyór**no ciao:cháo come:**kó**me sta:sta grazie:**grá**tsie prego:**pré**go per:per favore:fa**vó**re scusa:**skú**sa lavoro:la**vó**ro azienda:a**dzién**da ufficio:uf**fí**cho riunione:riu**nió**ne email:**í**meil telefono:te**lé**fono domani:do**má**ni oggi:**ód**yi ieri:**iè**ri settimana:setti**má**na mese:**mé**ze anno:**án**no ora:**ó**ra tempo:**tém**po denaro:de**ná**ro prezzo:**pré**tso contratto:kon**trát**to cliente:kli**èn**te capo:**ká**po collega:kol**lé**ga sì:si no:no arrivederci:arrive**dér**chi piacere:pia**ché**re nome:**nó**me io:**ì**o tu:tu lei:lei noi:nói voi:vói loro:**ló**ro essere:**ès**sere avere:a**vé**re fare:**fá**re andare:an**dá**re volere:vo**lé**re potere:po**té**re parlare:par**lá**re scrivere:**skrì**vere leggere:**léd**yere mangiare:man**dyá**re bere:**bé**re dormire:dor**mí**re casa:**ká**za acqua:**ák**ua pane:**pá**ne vino:**ví**no buono:**buò**no bello:**bèl**lo grande:**grán**de piccolo:**pík**colo bene:**bè**ne male:**má**le molto:**mól**to poco:**pò**co sempre:**sèm**pre mai:mai e:e ma:ma con:kon di:di a:a da:da in:in su:su`
+.split(/\s+/).forEach(pair=>{const i=pair.indexOf(":"); if(i>0) IT_DICT[pair.slice(0,i)]=pair.slice(i+1);});
+
+/* Mini-diccionario carácter→sílaba adaptada (con tonos) para textos propios en chino */
+const ZH_DICT={};
+`你:nǐ 好:jǎo 我:wǒ 是:shì 他:tā 她:tā 们:men 的:de 了:le 吗:ma 呢:ne 请:chǐng 谢:shiè 再:tsài 见:jièn 明:míng 天:tiān 今:jīn 年:nián 月:yuè 日:rì 星:shīng 期:chī 一:yī 二:èr 三:sān 四:sì 五:wǔ 六:liù 七:chī 八:bā 九:jiǔ 十:shí 百:bǎi 千:chiān 万:wàn 元:yuán 钱:chián 贵:guì 便:pián 宜:yi 多:duō 少:shǎo 大:dà 小:shiǎo 很:jěn 高:gāo 兴:shìng 认:rèn 识:shi 名:míng 片:pièn 卡:kǎ 公:gōng 司:sī 工:gōng 作:zuò 会:jùi 开:kāi 议:yì 室:shì 电:diàn 话:juà 邮:yóu 件:jièn 发:fā 给:gěi 帮:bāng 助:chù 合:jé 愉:yú 快:kuài 经:jīng 理:lǐ 项:shiàng 目:mù 老:lǎo 师:shī 同:tóng 事:shì 朋:péng 友:yǒu 家:jiā 人:rén 中:chōng 国:guó 学:shué 生:shēng 英:yīng 语:yǔ 汉:hàn 说:shuō 听:tīng 读:dú 写:shiě 看:kàn 吃:chī 喝:jē 水:shuǐ 茶:chá 咖:kā 啡:fēi 饭:fàn 菜:tsài 米:mǐ 面:miàn 买:mǎi 卖:mài 要:yào 想:shiǎng 能:néng 可:kě 以:yǐ 不:bù 没:méi 有:yǒu 在:tsài 去:chù 来:lái 到:dào 从:tsóng 和:jé 与:yǔ 或:juò 但:dàn 因:yīn 为:wèi 所:suǒ 如:rú 果:guǒ 这:chè 那:nà 哪:nǎ 谁:shéi 什:shén 么:me 怎:tsěn 样:yàng 吧:ba 啊:a 呀:ya 哦:ó 嗯:èn 对:duì 错:tsuò 真:chēn 太:tài 最:tsuì 更:gèng 也:yě 都:dōu 就:jiù 还:jái 只:chǐ 又:yòu 先:shiān 后:jòu 上:shàng 下:shià 里:lǐ 外:wài 前:chián 间:jiān 点:diǎn 分:fēn 半:bàn 号:jào 周:chōu 早:tsǎo 晚:wǎn 现:shiàn 忙:máng 累:lèi 难:nán 容:róng 易:yì 新:shīn 旧:jiù 坏:juài 长:cháng 短:duǎn 远:yuǎn 近:jìn 慢:màn 热:rè 冷:lěng 雨:yǔ 风:fēng 雪:shuě 山:shān 河:jé 海:jǎi 城:chéng 市:shì 街:jiē 路:lù 车:chē 站:chàn 机:jī 场:chǎng 飞:fēi 票:piào 银:yín 行:jáng 医:yī 院:yuàn 药:yào 病:bìng 疼:téng 爱:ài 喜:shǐ 欢:juan 心:shīn 知:chī 道:dào 懂:dǒng 问:wèn 题:tí 答:dá 应:yīng 该:gāi 必:bì 需:shū 求:chiú 职:chí 位:wèi 员:yuán 板:bǎn 总:tsǒng 部:bù 门:mén 组:tsǔ 团:tuán 队:duì 计:jì 划:juà 报:bào 告:gào 表:biǎo 格:gé 数:shù 据:jù 信:shìn 息:shī 签:chiān 约:yuē 谈:tán 判:pàn 价:jià 售:shòu 服:fú 务:wù 客:kè 户:jù 产:chǎn 品:pǐn 质:chì 量:liàng 解:jiě 决:jué 方:fāng 案:àn 建:jiàn 意:yì 反:fǎn 支:chī 持:chí 感:gǎn 恩:ēn 抱:bào 歉:chiàn 起:chǐ 关:guān 系:shì 坐:zuò 走:tsǒu 留:liú 联:lián 微:wēi 扫:sǎo 码:mǎ 付:fù 款:kuǎn 账:chàng 单:dān 收:shōu 税:shuì 费:fèi 免:miǎn 运:yùn 送:sòng 货:juò 限:shiàn 紧:jǐn 急:jí 等:děng 候:jòu 马:mǎ 立:lì 刻:kè 稍:shāo 之:chī 时:shí 钟:chōng 历:lì 史:shǐ 文:wén 化:juà 言:yán 字:tsì 词:tsí 句:jù 段:duàn 篇:piān 章:chāng 书:shū 纸:chǐ 杂:tsá 志:chì 网:wǎng 络:luò 页:yè 密:mì 登:dēng 录:lù 注:chù 册:tsè 搜:sōu 索:suǒ 查:chá 询:shún 找:chǎo 丢:diū 失:shī 赢:yíng 输:shū 胜:shèng 败:bài 成:chéng 功:gōng 努:nǔ 力:lì 坚:jiān 放:fàng 弃:chì 希:shī 望:wàng 梦:mèng 标:biāo 执:chí 完:wán 美:měi 优:yōu 秀:shiù 良:liáng 差:chà 糟:tsāo 糕:gāo 棒:bàng 厉:lì 害:jai 聪:tsōng 笨:bèn 傻:shǎ 帅:shuài 漂:piào 亮:liang 丽:lì 丑:chǒu 胖:pàng 瘦:shòu 矮:ǎi 男:nán 女:niu 孩:jái 子:zi`
+.split(/\s+/).forEach(pair=>{const i=pair.indexOf(":"); if(i>0) ZH_DICT[pair.slice(0,i)]=pair.slice(i+1);});
+
+/* ============ 2. UTILIDADES ============ */
+const $=s=>document.querySelector(s);
+const $$=s=>Array.from(document.querySelectorAll(s));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const todayKey=()=>{const d=new Date();return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();};
+const yesterdayKey=()=>{const d=new Date(Date.now()-864e5);return d.getFullYear()+"-"+(d.getMonth()+1)+"-"+d.getDate();};
+const phHTML=p=>esc(p).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>");
+const normWord=w=>w.toLowerCase().replace(/[^a-z0-9]/g,"");
+function lev(a,b){
+  if(a===b)return 0; if(!a.length)return b.length; if(!b.length)return a.length;
+  let prev=Array.from({length:b.length+1},(_,j)=>j);
+  for(let i=1;i<=a.length;i++){const cur=[i];
+    for(let j=1;j<=b.length;j++)cur[j]=Math.min(prev[j]+1,cur[j-1]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));
+    prev=cur;}
+  return prev[b.length];
+}
+const sim=(a,b)=>{const m=Math.max(a.length,b.length);return m?1-lev(a,b)/m:1;};
+/* Alineación global Needleman-Wunsch objetivo↔hablado */
+function alignWords(target,spoken){
+  const n=target.length,m=spoken.length;
+  const dp=Array.from({length:n+1},()=>new Float32Array(m+1));
+  for(let i=0;i<=n;i++)dp[i][0]=-i;
+  for(let j=0;j<=m;j++)dp[0][j]=-j;
+  const S=Array.from({length:n},()=>new Float32Array(m));
+  for(let i=1;i<=n;i++)for(let j=1;j<=m;j++){
+    const s=sim(target[i-1],spoken[j-1]);S[i-1][j-1]=s;
+    dp[i][j]=Math.max(dp[i-1][j-1]+(s>=.72?2+s:-1),dp[i-1][j]-1,dp[i][j-1]-1);
+  }
+  const pairs=[];let i=n,j=m;
+  while(i>0&&j>0){
+    const s=S[i-1][j-1],diag=dp[i-1][j-1]+(s>=.72?2+s:-1);
+    if(Math.abs(dp[i][j]-diag)<1e-6){pairs.push({ti:i-1,si:j-1,s});i--;j--;}
+    else if(Math.abs(dp[i][j]-(dp[i-1][j]-1))<1e-6)i--;else j--;
+  }
+  return pairs.reverse();
+}
+/* Tokenización del texto original: palabras (en/de/it) o caracteres (zh) */
+function buildTokens(text,lang){
+  const tokens=[],offsets=[];let html="";
+  if(lang==="zh"){
+    const skip=/[\s，。！？、；：""''（）《》,.!?;:…—\-·]/;
+    for(let i=0;i<text.length;i++){
+      const ch=text[i];
+      if(skip.test(ch)){html+=esc(ch);continue;}
+      tokens.push(ch);offsets.push(i);
+      html+=`<span class="w" data-k="${tokens.length-1}">${esc(ch)}</span>`;
+    }
+    return {tokens,offsets,html,ttsText:text};
+  }
+  const ws=text.trim().split(/\s+/);let acc=0;
+  ws.forEach(w=>{tokens.push(w);offsets.push(acc);acc+=w.length+1;});
+  html=ws.map((w,k)=>`<span class="w" data-k="${k}">${esc(w)}</span>`).join(" ");
+  return {tokens,offsets,html,ttsText:ws.join(" ")};
+}
+/* Fonética en spans sincronizables */
+function buildPh(p){
+  const parts=p.trim().split(/\s+/);
+  return {count:parts.length,html:parts.map((t,k)=>`<span class="pw" data-p="${k}">${phHTML(t)}</span>`).join(" ")};
+}
+/* Lo que dijo el micrófono, tokenizado según idioma */
+function tokensFromSpoken(spoken,lang){
+  if(lang==="zh")return Array.from(spoken).filter(c=>/[\u4e00-\u9fff0-9]/.test(c));
+  return spoken.split(/\s+/).map(normWord).filter(Boolean);
+}
+/* Generadores fonéticos aproximados por idioma (textos propios) */
+function roughEn(w){
+  const key=w.toLowerCase().replace(/[^a-z']/g,"");
+  if(!key)return"";
+  if(PHON_DICT[key])return PHON_DICT[key];
+  let s=key;
+  s=s.replace(/([aeiou])([bcdfgklmnprstvz])e$/,(m,v,c)=>({a:"ei",e:"ii",i:"ai",o:"ou",u:"iu"}[v])+c);
+  [[/tion/g,"shon"],[/sion/g,"shon"],[/ture/g,"cher"],[/eigh/g,"ei"],[/igh/g,"ai"],[/tch/g,"ch"],[/dge/g,"y"],
+   [/ph/g,"f"],[/wh/g,"u"],[/ck/g,"k"],[/qu/g,"ku"],[/ee/g,"ii"],[/ea/g,"ii"],[/oo/g,"uu"],[/ou/g,"au"],[/ow/g,"ou"],
+   [/ai/g,"ei"],[/ay/g,"ei"],[/oa/g,"ou"],[/oi/g,"oi"],[/oy/g,"oi"],[/au/g,"o"],[/aw/g,"o"],[/ew/g,"iu"],[/ie/g,"ii"],
+   [/c([eiy])/g,"s$1"],[/g([eiy])/g,"y$1"],[/c/g,"k"],[/j/g,"y"],[/x/g,"ks"],[/z/g,"s"],[/th/g,"z"],[/w/g,"u"],
+   [/y$/,"i"],[/y/g,"i"],[/h/g,""],[/([^aeiou])e$/,"$1"],[/u/g,"a"],[/([bcdfgklmnprstvz])\1/g,"$1"]]
+  .forEach(([re,rep])=>{s=s.replace(re,rep);});
+  return s||key;
+}
+function roughDe(w){
+  const key=w.toLowerCase().replace(/[^a-zäöüß']/g,"");
+  if(!key)return"";
+  if(DE_DICT[key])return DE_DICT[key];
+  let s=key.replace(/^sp/,"shp").replace(/^st/,"sht");
+  [[/j/g,"y"],[/sch/g,"sh"],[/ch/g,"j"],[/tion/g,"tsion"],[/ck/g,"k"],[/ph/g,"f"],[/qu/g,"kv"],[/tz/g,"ts"],
+   [/ei/g,"ai"],[/ie/g,"ii"],[/eu/g,"oi"],[/äu/g,"oi"],[/z/g,"ts"],[/v/g,"f"],[/w/g,"v"],
+   [/ü/g,"iu"],[/ö/g,"e"],[/ä/g,"e"],[/ß/g,"s"],[/([aeiou])h/g,"$1"],[/h/g,""],[/y/g,"iu"],[/([bcdfgklmnprstvz])\1/g,"$1"]]
+  .forEach(([re,rep])=>{s=s.replace(re,rep);});
+  return s||key;
+}
+function roughIt(w){
+  const key=w.toLowerCase().replace(/[^a-zàèéìòù']/g,"");
+  if(!key)return"";
+  if(IT_DICT[key])return IT_DICT[key];
+  let s=key;
+  [[/sch/g,"sk"],[/gli/g,"li"],[/gn/g,"ñ"],[/sc([ei])/g,"sh$1"],[/ch/g,"k"],[/gh/g,"g"],
+   [/c([ei])/g,"ch$1"],[/g([ei])/g,"y$1"],[/c/g,"k"],[/z/g,"ts"],[/h/g,""],[/qu/g,"ku"],
+   [/x/g,"ks"],[/w/g,"v"],[/j/g,"y"],[/y/g,"i"],[/à/g,"a"],[/è/g,"e"],[/ì/g,"i"],[/ò/g,"o"],[/ù/g,"u"]]
+  .forEach(([re,rep])=>{s=s.replace(re,rep);});
+  return s||key;
+}
+function roughPhon(sentence,lang){
+  if(lang==="zh"){
+    return Array.from(sentence).map(c=>ZH_DICT[c]||(/[\s，。！？、；：,.!?;:…—\-]/.test(c)?"":c)).filter(Boolean).join(" ");
+  }
+  const fn=lang==="de"?roughDe:lang==="it"?roughIt:roughEn;
+  return sentence.trim().split(/\s+/).map(fn).filter(Boolean).join(" ");
+}
+/* Divide en frases según idioma (chino: 。！？; otros: puntuación + mayúscula) */
+function splitSentences(text,lang){
+  const lines=text.split(/\n+/).map(l=>l.trim()).filter(Boolean);
+  const out=[];
+  const enders=lang==="zh"?"。！？!?":".!?…";
+  for(const line of lines){
+    let buf="";
+    for(let i=0;i<line.length;i++){
+      buf+=line[i];
+      if(enders.includes(line[i])){
+        if(lang==="zh"){out.push(buf.trim());buf="";continue;}
+        const next=line[i+1];
+        if(next===undefined||(next===" "&&/[A-Z"“¿¡]/.test(line[i+2]||""))){out.push(buf.trim());buf="";}
+      }
+    }
+    if(buf.trim())out.push(buf.trim());
+  }
+  return out;
+}
+
+/* ============ 3. ESTADO PERSISTENTE · PERFILES CON APODO ============ */
+const LS_KEY="stoic-voice:v1";            /* legado: progreso antiguo sin perfil */
+const LS_PROFILES="stoic-voice:profiles"; /* índice de perfiles (solo apodo + sello) */
+const LS_USER=id=>"stoic-voice:u:"+id;    /* progreso aislado por perfil */
+const RATES=[0.5,1,1.5]; /* velocidades estilo WhatsApp */
+const AVATARS=["🏛️","🦉","🔥","🌿","⚡","🌙","🦁","⭐","🫒","📜"];
+const defaultState=()=>({
+  xp:0,streak:0,lastDay:"",today:{date:todayKey(),count:0},
+  attempts:0,progress:{},finished:[],lastRead:null,custom:[],
+  settings:{fluent:false,rate:0.5,goal:5,voices:{en:"",zh:"",de:"",it:""}}
+});
+let profiles={activeId:null,list:[]};
+try{const raw=localStorage.getItem(LS_PROFILES);if(raw)profiles=JSON.parse(raw);}catch(e){}
+if(!profiles||!Array.isArray(profiles.list))profiles={activeId:null,list:[]};
+let state=defaultState();
+function loadUserState(id){
+  let s=defaultState();
+  try{
+    const raw=localStorage.getItem(LS_USER(id));
+    if(raw){const p=JSON.parse(raw);s=Object.assign(defaultState(),p);s.settings=Object.assign(defaultState().settings,p.settings||{});}
+  }catch(e){console.warn("Perfil corrupto, reiniciando.",e);}
+  if(s.today.date!==todayKey())s.today={date:todayKey(),count:0};
+  if(!RATES.includes(s.settings.rate))s.settings.rate=0.5;
+  if(!s.settings.voices)s.settings.voices={en:s.settings.voice||"",zh:"",de:"",it:""};
+  return s;
+}
+const save=()=>{if(!profiles.activeId)return;try{localStorage.setItem(LS_USER(profiles.activeId),JSON.stringify(state));}catch(e){}};
+const saveProfiles=()=>{try{localStorage.setItem(LS_PROFILES,JSON.stringify(profiles));}catch(e){}};
+const activeProfile=()=>profiles.list.find(p=>p.id===profiles.activeId)||null;
+/* Privacidad: apodos cortos; se filtran símbolos raros y se limita a 20 caracteres */
+const sanitizeNick=n=>String(n).replace(/[^\p{L}\p{N} _.\-]/gu,"").replace(/\s+/g," ").trim().slice(0,20);
+function createProfile(nick,avatar){
+  const id="u"+Date.now().toString(36)+Math.floor(Math.random()*1e4).toString(36);
+  profiles.list.push({id,nick,avatar,created:Date.now()});
+  /* el PRIMER perfil hereda el progreso antiguo guardado sin perfil (migración automática) */
+  if(profiles.list.length===1){
+    try{const legacy=localStorage.getItem(LS_KEY);
+      if(legacy){localStorage.setItem(LS_USER(id),legacy);localStorage.removeItem(LS_KEY);}
+    }catch(e){}
+  }
+  activateProfile(id);
+  return id;
+}
+function activateProfile(id){
+  const p=profiles.list.find(x=>x.id===id);if(!p)return;
+  profiles.activeId=id;saveProfiles();
+  state=loadUserState(id);
+  applyMode();updateProfileChip();showView("library");
+}
+function deleteProfile(id){
+  const p=profiles.list.find(x=>x.id===id);
+  profiles.list=profiles.list.filter(x=>x.id!==id);
+  try{localStorage.removeItem(LS_USER(id));}catch(e){}
+  if(profiles.activeId===id){
+    profiles.activeId=null;saveProfiles();
+    if(profiles.list.length){activateProfile(profiles.list[0].id);}
+    else{state=defaultState();applyMode();updateProfileChip();showView("library");openProfileModal(true);}
+  }else{saveProfiles();renderProfileList();}
+  if(p)toast("Perfil «"+p.nick+"» eliminado con todos sus datos.","info","i-trash");
+}
+const allBooks=()=>BOOKS.concat(state.custom);
+const getBook=id=>allBooks().find(b=>b.id===id);
+const prog=(bid,i)=>(state.progress[bid]||{})[i]||null;
+const masteredCount=b=>b.blocks.reduce((n,_,i)=>n+((prog(b.id,i)||{}).mastered?1:0),0);
+const totalMastered=()=>allBooks().reduce((n,b)=>n+masteredCount(b),0);
+const effStreak=()=>(state.lastDay===todayKey()||state.lastDay===yesterdayKey())?state.streak:0;
+
+/* ============ 4. PORTADAS SVG ============ */
+const EMBLEMS={
+  col:'<path d="M6 21h12M8 18h8M9 18V9m3 9V9m3 9V9M7 9h10M8 6h8l1-3H7z"/>',
+  chain:'<path d="M10 14l4-4M8.5 15.5l-3 3a3.54 3.54 0 0 1-5-5l3-3M15.5 8.5l3-3a3.54 3.54 0 0 1 5 5l-3 3"/>',
+  hourglass:'<path d="M7 3h10M7 21h10M8 3v3l4 5 4-5V3M8 21v-3l4-5 4 5v3"/><circle cx="12" cy="17.4" r=".9"/>',
+  flame:'<path d="M12 3c3 4 6 6.5 6 10a6 6 0 0 1-12 0c0-3.5 3-6 6-10z"/><path d="M12 12c1.4 1.7 2.4 2.9 2.4 4.3a2.4 2.4 0 0 1-4.8 0c0-1.4 1-2.6 2.4-4.3z"/>',
+  arrow:'<circle cx="12" cy="13" r="7.5"/><circle cx="12" cy="13" r="3.6"/><path d="M12 13L20.5 4.5M16.5 4.5h4v4"/>',
+  bubbles:'<path d="M3 4h12v9H8l-5 4v-4H3zM17 9h4v7h-1v3l-4-3h-4"/>',
+  sunrise:'<path d="M4 17h16M7 21h10M12 12a5 5 0 0 1 5 5H7a5 5 0 0 1 5-5zM12 5v3M5 8l2 2M19 8l-2 2"/>',
+  briefcase:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M9 8V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18M12 12v3"/>',
+  coinzh:'<circle cx="12" cy="12" r="8.5"/><rect x="9.5" y="9.5" width="5" height="5"/>',
+  gate:'<path d="M4 20h16M5 20V9M9 20V9M15 20V9M19 20V9M3 9h18M4 9l8-5 8 5M10 20v-6h4v6"/>',
+  dome:'<path d="M4 20h16M6 20v-8h12v8M8 12c0-5 8-5 8 0M12 4v3M10 7h4"/>',
+  quill:'<path d="M20 4C12 5 7 10 5 19c7-1 12-6 13-13zM5 19L15 9M3 21l2-2"/>'
+};
+const PALETTES=[["#2b2136","#120e18"],["#242d1c","#11150c"],["#37231a","#170f09"],["#1c2a38","#0d1319"]];
+function coverSVG(b,mini){
+  const uid="g"+b.id.replace(/[^a-z0-9]/g,"");
+  const seed=(b.id.length*7)%90+10;
+  return `<svg class="bg" viewBox="0 0 300 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <defs><linearGradient id="${uid}" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="${b.pal[0]}"/><stop offset="1" stop-color="${b.pal[1]}"/></linearGradient>
+    <filter id="m${uid}"><feTurbulence type="fractalNoise" baseFrequency="0.012 0.028" numOctaves="3" seed="${seed}"/>
+    <feColorMatrix type="matrix" values="0 0 0 0 0.9 0 0 0 0 0.82 0 0 0 0 0.6 0 0 0 0.6 0"/></filter></defs>
+  <rect width="300" height="420" fill="url(#${uid})"/>
+  <rect width="300" height="420" filter="url(#m${uid})" opacity="0.16"/>
+  <rect x="14" y="14" width="272" height="392" fill="none" stroke="#e9d3a0" stroke-opacity=".35" stroke-width="1"/>
+  <rect x="20" y="20" width="260" height="380" fill="none" stroke="#e9d3a0" stroke-opacity=".14" stroke-width="1"/>
+  ${mini?"":`<text x="150" y="330" text-anchor="middle" font-family="Georgia,serif" font-style="italic" font-size="210" fill="#e9d3a0" opacity="0.07">${b.numeral||"·"}</text>`}
+  <g transform="translate(${mini?96:102},${mini?110:120}) scale(${mini?4.5:4})" fill="none" stroke="#d9bd85" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" opacity=".9">${EMBLEMS[b.emblem]||EMBLEMS.quill}</g>
+  <path d="M120 ${mini?230:250}h60" stroke="#e9d3a0" stroke-opacity=".5" stroke-width="1"/>
+  <path d="M147 ${mini?226:246}l3 4 3-4-3-4z" fill="#e9d3a0" opacity=".7"/></svg>`;
+}
+
+/* ============ 5. BIBLIOTECA ============ */
+function toast(msg,type="info",icon="i-col"){
+  const t=document.createElement("div");
+  t.className="toast"+(type==="gold"?" gold":type==="err"?" err":"");
+  t.innerHTML=`<svg class="ic"><use href="#${icon}"/></svg><span>${esc(msg)}</span>`;
+  $("#toasts").appendChild(t);
+  setTimeout(()=>{t.classList.add("out");setTimeout(()=>t.remove(),400);},3400);
+}
+function bumpChip(sel){const c=$(sel);c.classList.remove("bump");void c.offsetWidth;c.classList.add("bump");}
+function updateHeader(){
+  $("#streakN").textContent=effStreak();
+  $("#xpN").textContent=state.xp;
+  $("#chipStreak").classList.toggle("hot",effStreak()>0);
+}
+function bookCardHTML(b){
+  const mc=masteredCount(b),pct=Math.round(mc/b.blocks.length*100);
+  const custom=b.cat==="custom";
+  return `<div class="book" data-book="${esc(b.id)}" role="button" tabindex="0" aria-label="Abrir ${esc(b.title)}">
+    ${custom?`<button class="del" data-del="${esc(b.id)}" aria-label="Eliminar texto"><svg class="ic" style="width:14px;height:14px"><use href="#i-trash"/></svg></button>`:""}
+    <div class="cover">${coverSVG(b)}<span class="lang-badge">${LANGS[bookLang(b)].badge}</span>
+      <div class="cover-info"><h4>${esc(b.title)}</h4><p>${esc(b.author)}</p></div></div>
+    <div class="book-meta"><div class="pbar"><i style="width:${pct}%"></i></div><span>${mc}/${b.blocks.length}</span></div>
+  </div>`;
+}
+function renderLibrary(){
+  $("#shelfClassic").innerHTML=BOOKS.filter(b=>b.cat==="classic").map(bookCardHTML).join("");
+  $("#shelfModern").innerHTML=BOOKS.filter(b=>b.cat==="modern").map(bookCardHTML).join("");
+  $("#shelfBusiness").innerHTML=BOOKS.filter(b=>b.cat==="business").map(bookCardHTML).join("");
+  $("#shelfWorld").innerHTML=BOOKS.filter(b=>b.cat==="world").map(bookCardHTML).join("");
+  const cw=$("#shelfCustomWrap");
+  if(state.custom.length){
+    cw.style.display="";
+    $("#shelfCustom").innerHTML=state.custom.map(bookCardHTML).join("")+
+      `<button class="add-card" id="addCardBtn"><svg class="ic"><use href="#i-plus"/></svg><span>Añadir texto</span></button>`;
+    const ab=$("#addCardBtn");if(ab)ab.onclick=openAddModal;
+  }else cw.style.display="none";
+  $("#stStreak").textContent=effStreak();
+  $("#stXp").textContent=state.xp;
+  $("#stAttempts").textContent=state.attempts;
+  $("#stBooks").textContent=state.finished.length;
+  $("#heroStreak").textContent=effStreak()+(effStreak()===1?" día":" días");
+  $("#heroMastered").textContent=totalMastered();
+  const goal=state.settings.goal,cnt=Math.min(state.today.count,goal);
+  $("#goalTxt").textContent=state.today.count+"/"+goal;
+  $("#goalRing").style.strokeDashoffset=201*(1-cnt/goal);
+  const q=QUOTES[Math.floor(Date.now()/864e5)%QUOTES.length];
+  $("#qotdText").textContent="“"+q.t+"”";$("#qotdAuthor").textContent="— "+q.a;
+  const lr=state.lastRead&&getBook(state.lastRead.bid);
+  if(lr){
+    $("#continueBox").innerHTML=`<div class="mini">${coverSVG(lr,true)}</div><div><p>Continuar leyendo</p><strong>${esc(lr.title)}</strong><span>Fragmento ${state.lastRead.idx+1} de ${lr.blocks.length} · ${LANGS[bookLang(lr)].label}</span></div>`;
+    $("#btnContinueTxt").textContent="Continuar práctica";
+  }else{
+    const b=BOOKS[0];
+    $("#continueBox").innerHTML=`<div class="mini">${coverSVG(b,true)}</div><div><p>Sugerencia del maestro</p><strong>${esc(b.title)}</strong><span>Empieza por el emperador</span></div>`;
+    $("#btnContinueTxt").textContent="Comenzar a practicar";
+  }
+  updateHeader();
+}
+function showView(name){
+  stopSpeak();stopMic(true);
+  $("#libraryView").classList.toggle("active",name==="library");
+  $("#readerView").classList.toggle("active",name==="reader");
+  if(name==="library")renderLibrary();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ============ 6. LECTOR POR TARJETAS ============ */
+let current={book:null,idx:0,tokens:[],offsets:[],ttsText:"",lang:"en",phMap:[]};
+function openBook(bid,idx=0){
+  const b=getBook(bid);if(!b)return;
+  current.book=b;current.idx=Math.max(0,Math.min(idx,b.blocks.length-1));
+  $("#rCover").innerHTML=coverSVG(b,true);
+  $("#rTitle").textContent=b.title;$("#rAuthor").textContent=b.author+" · "+LANGS[bookLang(b)].label;
+  $("#rDesc").textContent=b.desc;
+  applyMode();showView("reader");renderBlock();
+}
+function applyMode(){
+  const fluent=state.settings.fluent;
+  document.body.classList.toggle("fluent",fluent);
+  $("#modeSwitch").setAttribute("aria-pressed",String(fluent));
+  $("#modeLabel").textContent=fluent?"LECTURA FLUIDA":"ENTRENAMIENTO";
+}
+const fmtRate=r=>String(r)+"×";
+function cycleRate(){
+  const i=RATES.indexOf(state.settings.rate);
+  state.settings.rate=RATES[(i+1)%RATES.length];save();
+  const c=$("#btnSpeed");
+  if(c){c.textContent=fmtRate(state.settings.rate);c.classList.remove("pop");void c.offsetWidth;c.classList.add("pop");}
+  if(ttsActive)speakBlock(); /* reinicia con la nueva velocidad, como WhatsApp */
+}
+function renderBlock(){
+  stopSpeak();stopMic(true);
+  const b=current.book,i=current.idx,blk=b.blocks[i],lang=bookLang(b);
+  current.lang=lang;
+  state.lastRead={bid:b.id,idx:i};save();
+  const T=buildTokens(blk.e,lang);
+  current.tokens=T.tokens;current.offsets=T.offsets;current.ttsText=T.ttsText;
+  const P=buildPh(blk.p);
+  /* mapa token→sílaba fonética (1:1 si coinciden; proporcional si no) */
+  current.phMap=T.tokens.map((_,k)=>P.count===T.tokens.length?k:Math.round(k*(P.count-1)/Math.max(1,T.tokens.length-1)));
+  const p=prog(b.id,i);
+  $("#cardHost").innerHTML=`
+  <article class="card${p&&p.mastered?" mastered":""}" id="focusCard">
+    <div class="card-kicker">
+      <span class="ref">${esc(blk.r)}</span>
+      <span class="tag lang">${LANGS[lang].badge} · ${LANGS[lang].label}</span>
+      ${blk.auto?'<span class="tag">fonética aprox.</span>':""}
+      <span class="seal"><svg class="ic" style="width:12px;height:12px"><use href="#i-check"/></svg>DOMINADA</span>
+    </div>
+    <p class="en${lang==="zh"?" zh":""}" id="enText">${T.html}</p>
+    <div class="ph-row">
+      <div class="side"><svg class="ic"><use href="#i-wave"/></svg><small>SUENA</small></div>
+      <div><p class="ph" id="phText">${P.html}</p>
+      <span class="ph-note">${esc(LANGS[lang].note)}</span></div>
+    </div>
+    <div class="trans-row" id="transRow">
+      <div class="trans-head"><small>Traducción</small>
+        <button class="reveal-btn" id="btnReveal"><svg class="ic" style="width:13px;height:13px"><use href="#i-eye"/></svg><span>Ver traducción</span></button>
+      </div>
+      <p class="es" id="esText">${blk.s?esc(blk.s):"<i>Sin traducción para este fragmento.</i>"}</p>
+    </div>
+    <div class="actions">
+      <button class="btn btn-listen" id="btnListen"><svg class="ic"><use href="#i-play"/></svg><span>Escuchar nativo</span></button>
+      <button class="speed-chip" id="btnSpeed" title="Velocidad de audio: 0.5× → 1× → 1.5× (como WhatsApp)">${fmtRate(state.settings.rate)}</button>
+      <button class="btn gold btn-mic" id="btnMic"><svg class="ic"><use href="#i-mic"/></svg><span>Tu turno · hablar</span></button>
+      <span class="voice-status" id="voiceStatus">Escucha primero: el resaltado dorado sigue la pronunciación de abajo.</span>
+    </div>
+    <div class="score-wrap" id="scoreWrap">
+      <div class="score-ring" id="scoreRing">
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle class="bgc" cx="32" cy="32" r="26" fill="none" stroke-width="5"/>
+          <circle class="fgc" id="scoreArc" cx="32" cy="32" r="26" fill="none" stroke-width="5" stroke-dasharray="163.4" stroke-dashoffset="163.4"/>
+        </svg><b id="scoreNum">0%</b>
+      </div>
+      <div class="score-info">
+        <strong id="scoreMsg"></strong>
+        <span id="liveTx"></span>
+        <div class="legend"><span><i class="lg-ok"></i>bien pronunciada</span><span><i class="lg-bad"></i>repítela</span></div>
+      </div>
+      <button class="btn sm ghost" id="btnRetry"><svg class="ic" style="width:14px;height:14px"><use href="#i-repeat"/></svg>Repetir</button>
+    </div>
+  </article>`;
+  $("#btnListen").onclick=()=>ttsActive?stopSpeak():speakBlock();
+  $("#btnSpeed").onclick=cycleRate;
+  $("#btnMic").onclick=()=>micActive?stopMic():startMic();
+  $("#btnRetry").onclick=()=>{resetPaint();$("#scoreWrap").classList.remove("show");startMic();};
+  const reveal=()=>{
+    const row=$("#transRow"),on=row.classList.toggle("revealed");
+    $("#btnReveal span").textContent=on?"Ocultar":"Ver traducción";
+  };
+  $("#btnReveal").onclick=reveal;
+  $("#esText").onclick=()=>{if(!$("#transRow").classList.contains("revealed"))reveal();};
+  $("#dots").innerHTML=b.blocks.map((_,k)=>{
+    const pk=prog(b.id,k);
+    return `<button class="dot${pk&&pk.mastered?" done":""}${k===i?" cur":""}" data-dot="${k}" title="Fragmento ${k+1}" aria-label="Ir al fragmento ${k+1}"></button>`;
+  }).join("");
+  $("#blockCount").textContent=(i+1)+" / "+b.blocks.length;
+  $("#rBar").style.width=((i+1)/b.blocks.length*100)+"%";
+  $("#btnPrev").disabled=i===0;
+  $("#btnNext").disabled=i===b.blocks.length-1;
+}
+function resetPaint(){
+  $$("#enText .w").forEach(w=>w.classList.remove("ok","bad","speak"));
+  $$("#phText .pw").forEach(w=>w.classList.remove("ok","bad","speak"));
+}
+function nav(delta){
+  const n=current.idx+delta;
+  if(n<0||n>=current.book.blocks.length)return;
+  current.idx=n;renderBlock();
+}
+
+/* ============ 7. TTS MULTIIDIOMA · resaltado sobre la FONÉTICA ============ */
+const synth=window.speechSynthesis||null;
+let ttsActive=false,ttsUtter=null,ttsTimers=[],boundarySeen=false;
+let voicesCache={en:[],zh:[],de:[],it:[]};
+const voiceWarned=new Set();
+function loadVoices(){
+  if(!synth)return;
+  const all=synth.getVoices();
+  for(const L of Object.keys(LANGS)){
+    voicesCache[L]=all.filter(v=>{
+      const lg=v.lang.toLowerCase().replace("_","-");
+      return lg.startsWith(L)||(L==="zh"&&lg.startsWith("cmn"));
+    });
+  }
+  buildVoiceSelect();
+}
+function buildVoiceSelect(){
+  const sel=$("#voiceSelect");let h="";
+  for(const L of Object.keys(LANGS)){
+    const vs=voicesCache[L],cur=(state.settings.voices||{})[L]||"";
+    h+=`<optgroup label="${LANGS[L].label} · ${vs.length} voces">`;
+    h+=`<option value="${L}::" data-lang="${L}" data-cur="${cur?"":"1"}">Automática (la mejor)</option>`;
+    h+=vs.map(v=>`<option value="${L}::${esc(v.name)}" data-lang="${L}" data-cur="${v.name===cur?"1":""}">${esc(v.name)}</option>`).join("");
+    if(!vs.length)h+=`<option disabled>— sin voces instaladas —</option>`;
+    h+="</optgroup>";
+  }
+  sel.innerHTML=h;
+  sel.selectedIndex=-1;
+}
+function pickVoice(lang){
+  const vs=voicesCache[lang]||[];if(!vs.length)return null;
+  const want=(state.settings.voices||{})[lang];
+  return vs.find(v=>v.name===want)||vs.find(v=>/google/i.test(v.name))||vs.find(v=>/natural/i.test(v.name))||vs[0];
+}
+/* El resaltado dorado vive en la FONÉTICA (o en el texto original si estás en modo fluido) */
+function paintSpeak(k){
+  const usePh=!state.settings.fluent;
+  $$("#enText .w").forEach(w=>w.classList.toggle("speak",!usePh&&Number(w.dataset.k)===k));
+  const pk=k<0?-1:current.phMap[k];
+  $$("#phText .pw").forEach(s=>s.classList.toggle("speak",usePh&&Number(s.dataset.p)===pk));
+}
+function clearTtsTimers(){ttsTimers.forEach(clearTimeout);ttsTimers=[];}
+function speakBlock(){
+  if(!synth){toast("Tu navegador no soporta síntesis de voz.","err");return;}
+  stopMic(true);stopSpeak();
+  const lang=current.lang;
+  const v=pickVoice(lang);
+  if(!v&&!voiceWarned.has(lang)){
+    voiceWarned.add(lang);
+    toast("No encontré voz de "+LANGS[lang].label+". En Chrome con internet suele funcionar; si no, instala la voz en tu sistema.","info","i-globe");
+  }
+  const u=new SpeechSynthesisUtterance(current.ttsText);
+  if(v)u.voice=v;
+  u.lang=(v&&v.lang)||LANGS[lang].tts;
+  u.rate=state.settings.rate;u.pitch=1;
+  boundarySeen=false;ttsActive=true;ttsUtter=u;
+  const btn=$("#btnListen");
+  if(btn){btn.classList.add("speaking");btn.innerHTML='<svg class="ic"><use href="#i-stop"/></svg><span>Detener</span>';}
+  $("#voiceStatus")&&($("#voiceStatus").textContent="Reproduciendo a "+fmtRate(state.settings.rate)+" — sigue el resaltado dorado en la pronunciación.");
+  /* Sincronía exacta: frontera de palabra/carácter → sílaba fonética */
+  u.onboundary=ev=>{
+    if(ev.name&&ev.name!=="word")return;
+    boundarySeen=true;clearTtsTimers();
+    let k=0;for(let j=0;j<current.offsets.length;j++)if(ev.charIndex>=current.offsets[j])k=j;
+    paintSpeak(k);
+  };
+  /* Respaldo temporizado si el motor no emite fronteras (frecuente en chino) */
+  ttsTimers.push(setTimeout(()=>{
+    if(boundarySeen||!ttsActive)return;
+    let t=0;
+    current.tokens.forEach((w,k)=>{
+      t+=(lang==="zh"?300:(w.length*62+150))/u.rate;
+      ttsTimers.push(setTimeout(()=>{if(ttsActive&&!boundarySeen)paintSpeak(k);},t));
+    });
+  },450));
+  const done=()=>{
+    if(ttsUtter!==u)return;
+    ttsActive=false;clearTtsTimers();paintSpeak(-1);
+    const b2=$("#btnListen");
+    if(b2){b2.classList.remove("speaking");b2.innerHTML='<svg class="ic"><use href="#i-play"/></svg><span>Escuchar nativo</span>';}
+    $("#voiceStatus")&&($("#voiceStatus").textContent="Ahora es tu turno: pulsa el micrófono y lee en voz alta.");
+  };
+  u.onend=done;u.onerror=done;
+  synth.speak(u);
+}
+function stopSpeak(){
+  if(synth){try{synth.cancel();}catch(e){}}
+  ttsActive=false;clearTtsTimers();paintSpeak(-1);
+  const b=$("#btnListen");
+  if(b){b.classList.remove("speaking");b.innerHTML='<svg class="ic"><use href="#i-play"/></svg><span>Escuchar nativo</span>';}
+}
+
+/* ============ 8. STT SHADOWING MULTIIDIOMA ============ */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition||null;
+let micActive=false,rec=null,committed=false,finalTx="",interimTx="";
+function startMic(){
+  if(!SR){toast("Reconocimiento de voz no disponible. Usa Chrome o Edge.","err","i-mic");return;}
+  stopSpeak();stopMic(true);resetPaint();
+  committed=false;finalTx="";interimTx="";
+  rec=new SR();rec.lang=LANGS[current.lang].tts;
+  rec.interimResults=true;rec.continuous=false;rec.maxAlternatives=1;
+  micActive=true;
+  const btn=$("#btnMic");
+  btn.classList.add("recording");
+  btn.innerHTML='<svg class="ic"><use href="#i-stop"/></svg><span>Escuchando… (pulsa para terminar)</span>';
+  $("#voiceStatus").innerHTML='<span class="live">● Escuchando en '+LANGS[current.lang].label+' — lee la frase completa.</span>';
+  $("#scoreWrap").classList.add("show");
+  $("#scoreMsg").textContent="En tiempo real…";
+  rec.onresult=ev=>{
+    interimTx="";
+    for(let i=ev.resultIndex;i<ev.results.length;i++){
+      if(ev.results[i].isFinal)finalTx+=ev.results[i][0].transcript+" ";
+      else interimTx+=ev.results[i][0].transcript;
+    }
+    liveFeedback((finalTx+interimTx).trim(),false);
+  };
+  rec.onerror=ev=>{
+    const msgs={"not-allowed":"Permiso de micrófono denegado. Actívalo en el candado de la barra de direcciones.",
+      "no-speech":"No te escuché. Acerca el micrófono e inténtalo de nuevo.",
+      "network":"El reconocimiento de Chrome necesita conexión a internet.",
+      "audio-capture":"No se encontró micrófono.",
+      "language-not-supported":"Tu navegador no reconoce "+LANGS[current.lang].label+" con el micrófono."};
+    if(ev.error!=="aborted")toast(msgs[ev.error]||"Error de reconocimiento: "+ev.error,"err","i-mic");
+  };
+  rec.onend=()=>{if(micActive)finishAttempt((finalTx||interimTx).trim());};
+  try{rec.start();}catch(e){micActive=false;}
+}
+function stopMic(silent){
+  if(rec){try{rec.onend=null;rec.abort();}catch(e){}rec=null;}
+  micActive=false;
+  const btn=$("#btnMic");
+  if(btn){btn.classList.remove("recording");btn.innerHTML='<svg class="ic"><use href="#i-mic"/></svg><span>Tu turno · hablar</span>';}
+  if(!silent&&$("#voiceStatus"))$("#voiceStatus").textContent="Micrófono apagado.";
+}
+/* Puntuación + pintado verde/rojo en el texto Y espejo en la fonética */
+function liveFeedback(spoken,final){
+  const lang=current.lang;
+  const target=lang==="zh"?current.tokens:current.tokens.map(normWord);
+  const said=tokensFromSpoken(spoken,lang);
+  const pairs=alignWords(target,said);
+  const map=new Map();pairs.forEach(p=>map.set(p.ti,p));
+  let sum=0;const states=[];
+  target.forEach((_,k)=>{
+    const p=map.get(k);
+    if(p&&p.s>=.72){states[k]="ok";sum+=p.s;}
+    else if(final||p){states[k]="bad";if(p)sum+=Math.max(0,p.s-.25);}
+    else states[k]="";
+  });
+  $$("#enText .w").forEach(w=>{
+    const k=Number(w.dataset.k);
+    w.classList.remove("ok","bad");
+    if(states[k])w.classList.add(states[k]);
+  });
+  $$("#phText .pw").forEach(s=>{
+    const pk=Number(s.dataset.p);
+    s.classList.remove("ok","bad");
+    const k=current.phMap.indexOf(pk);
+    if(k>=0&&states[k])s.classList.add(states[k]);
+  });
+  const score=Math.round(sum/target.length*100);
+  $("#scoreWrap").classList.add("show");
+  $("#scoreNum").textContent=score+"%";
+  $("#scoreArc").style.strokeDashoffset=163.4*(1-score/100);
+  const ring=$("#scoreRing");
+  ring.classList.remove("t-good","t-mid","t-low");
+  ring.classList.add(score>=85?"t-good":score>=55?"t-mid":"t-low");
+  $("#liveTx").textContent=spoken?("Escuché: “"+spoken+"”"):"";
+  if(final){
+    $("#scoreMsg").textContent=
+      score>=90?"Excelente. Digno de un sabio.":
+      score>=85?"¡Dominada! La repetición es la madre del estudio.":
+      score>=65?"Bien encaminado: repite las palabras en rojo.":
+      score>=40?"Sigue: la virtud es práctica, no talento.":
+      "Escucha de nuevo a 0.5× y repite despacio.";
+  }
+  return score;
+}
+function finishAttempt(spoken){
+  if(committed)return;committed=true;
+  stopMic(true);
+  if(!spoken){$("#voiceStatus").textContent="No se detectó voz. Inténtalo de nuevo.";$("#scoreWrap").classList.remove("show");return;}
+  const score=liveFeedback(spoken,true);
+  $("#voiceStatus").textContent="Intento registrado. Verde = bien · rojo = a repetir.";
+  const b=current.book,i=current.idx;
+  state.progress[b.id]=state.progress[b.id]||{};
+  const p=state.progress[b.id][i]=state.progress[b.id][i]||{best:0,att:0,mastered:false};
+  p.att++;p.best=Math.max(p.best,score);
+  if(score>=50){
+    state.attempts++;state.today.count++;
+    addXP(5,"+5 dracmas por practicar");
+    touchStreak();
+    if(score>=85&&!p.mastered){
+      p.mastered=true;addXP(25,"¡Fragmento dominado! +25 dracmas");
+      $("#focusCard").classList.add("mastered");
+      const dot=$(`#dots .dot[data-dot="${i}"]`);if(dot)dot.classList.add("done");
+      checkBookFinished(b);
+    }
+    checkDailyGoal();
+  }else{
+    toast("Necesitas al menos 50% para sumar práctica. ¡Otra vez!","info","i-repeat");
+  }
+  save();updateHeader();
+}
+
+/* ============ 9. GAMIFICACIÓN ============ */
+function addXP(n,msg){state.xp+=n;save();updateHeader();bumpChip("#chipXp");if(msg)toast(msg,"gold","i-coin");}
+function touchStreak(){
+  const t=todayKey();
+  if(state.lastDay===t)return;
+  state.streak=(state.lastDay===yesterdayKey())?state.streak+1:1;
+  state.lastDay=t;save();updateHeader();bumpChip("#chipStreak");
+  toast("Racha estoica: "+state.streak+(state.streak===1?" día":" días seguidos"),"gold","i-flame");
+}
+function checkDailyGoal(){if(state.today.count===state.settings.goal)celebrate("streak");}
+function checkBookFinished(b){
+  if(masteredCount(b)===b.blocks.length&&!state.finished.includes(b.id)){
+    state.finished.push(b.id);addXP(100,"Libro completado: +100 dracmas");save();
+    celebrate("book",b);
+  }
+}
+function celebrate(kind,book){
+  const q=QUOTES[Math.floor(Math.random()*QUOTES.length)];
+  $("#celQuote").textContent="“"+q.t+"”";$("#celAuthor").textContent="— "+q.a;
+  if(kind==="book"){
+    $("#celKicker").textContent="OBRA COMPLETADA";$("#celBig").textContent="✦";
+    $("#celTitle").textContent=book?book.title:"Libro completado";
+  }else{
+    $("#celKicker").textContent="SESIÓN COMPLETADA";$("#celBig").textContent="DÍA "+state.streak;
+    $("#celTitle").textContent="Racha extendida";
+  }
+  $("#celChips").innerHTML=
+    `<div class="chip"><svg class="ic"><use href="#i-mic"/></svg>${state.today.count} frases hoy</div>
+     <div class="chip"><svg class="ic"><use href="#i-coin"/></svg>${state.xp} dracmas</div>
+     <div class="chip"><svg class="ic"><use href="#i-check"/></svg>${totalMastered()} dominadas</div>`;
+  const m=$("#celebrateModal");
+  m.querySelectorAll(".spark").forEach(s=>s.remove());
+  for(let k=0;k<14;k++){
+    const s=document.createElement("i");s.className="spark";
+    s.style.left=(6+Math.random()*88)+"%";s.style.bottom="8%";
+    s.style.animationDelay=(Math.random()*1.6)+"s";s.style.animationDuration=(1.8+Math.random()*1.6)+"s";
+    m.appendChild(s);
+  }
+  $("#celebrateBackdrop").classList.add("show");
+}
+
+/* ============ 10. TEXTOS PROPIOS (4 idiomas) ============ */
+let pickedPalette=0;
+function openAddModal(){
+  $("#palettePick").innerHTML=PALETTES.map((p,k)=>
+    `<button data-pal="${k}" class="${k===pickedPalette?"on":""}" style="background:linear-gradient(140deg,${p[0]},${p[1]})" aria-label="Tono ${k+1}"></button>`).join("");
+  $("#addBackdrop").classList.add("show");
+  setTimeout(()=>$("#fTitle").focus(),80);
+}
+function createCustomBook(){
+  const title=$("#fTitle").value.trim(),author=$("#fAuthor").value.trim()||"Texto propio";
+  const lang=$("#fLang").value;
+  const en=$("#fEn").value.trim(),es=$("#fEs").value.trim(),ph=$("#fPh").value.trim();
+  if(!title||!en){toast("Faltan el título o el texto original.","err");return;}
+  const enParts=splitSentences(en,lang);
+  const esParts=es?splitSentences(es,lang):[];
+  const phParts=ph?ph.split(/\n+/).map(l=>l.trim()).filter(Boolean):[];
+  if(!enParts.length){toast("No pude dividir el texto en frases.","err");return;}
+  const blocks=enParts.slice(0,60).map((s,k)=>({
+    r:"Fragmento "+(k+1),e:s,
+    p:phParts[k]||roughPhon(s,lang),
+    s:esParts[k]||"",auto:!phParts[k]
+  }));
+  const book={id:"custom-"+Date.now(),title,author,cat:"custom",lang,numeral:"·",
+    pal:PALETTES[pickedPalette],emblem:"quill",
+    desc:"Texto añadido por ti en "+LANGS[lang].label+". La fonética automática es aproximada"+(lang==="zh"?" (en chino, parcial: los caracteres desconocidos se muestran sin convertir)":"")+": apóyate sobre todo en la voz nativa.",
+    blocks};
+  state.custom.push(book);save();
+  $("#addBackdrop").classList.remove("show");
+  ["fTitle","fAuthor","fEn","fEs","fPh"].forEach(id=>$("#"+id).value="");
+  toast("«"+title+"» añadido: "+blocks.length+" tarjetas listas.","gold","i-book");
+  renderLibrary();openBook(book.id,0);
+}
+function deleteCustom(bid){
+  state.custom=state.custom.filter(b=>b.id!==bid);
+  delete state.progress[bid];
+  state.finished=state.finished.filter(x=>x!==bid);
+  if(state.lastRead&&state.lastRead.bid===bid)state.lastRead=null;
+  save();renderLibrary();toast("Texto eliminado.","info","i-trash");
+}
+
+/* ============ 11. PERFILES CON APODO (privacidad primero) ============ */
+let pickedAvatar=0;
+function updateProfileChip(){
+  const p=activeProfile();
+  $("#pAvatar").textContent=p?p.avatar:"👤";
+  $("#pNick").textContent=p?p.nick:"Sin perfil";
+}
+function renderAvatarPick(){
+  $("#avatarPick").innerHTML=AVATARS.map((a,k)=>
+    `<button data-av="${k}" class="${k===pickedAvatar?"on":""}" aria-label="Sello ${k+1}">${a}</button>`).join("");
+}
+function renderProfileList(){
+  const host=$("#profileList");
+  if(!profiles.list.length){host.innerHTML='<p class="prof-empty">Aún no hay perfiles. Crea el primero abajo 👇</p>';return;}
+  host.innerHTML=profiles.list.map(p=>{
+    let xp=0;try{const r=localStorage.getItem(LS_USER(p.id));if(r)xp=JSON.parse(r).xp||0;}catch(e){}
+    const active=p.id===profiles.activeId;
+    return `<div class="prof-row${active?" active":""}">
+      <span class="pavatar">${p.avatar}</span>
+      <div class="pinfo"><b>${esc(p.nick)}</b><span>${xp} dracmas${active?" · en uso ahora":""}</span></div>
+      ${active?'<span class="ptag">ACTIVO</span>':`<button class="btn sm ghost" data-use="${p.id}">Usar</button>`}
+      <button class="icon-btn" data-edit="${p.id}" title="Cambiar apodo" style="width:32px;height:32px;font-size:.8rem">✏️</button>
+      <button class="icon-btn pdel" data-pdel="${p.id}" title="Eliminar perfil y sus datos" style="width:32px;height:32px"><svg class="ic" style="width:14px;height:14px"><use href="#i-trash"/></svg></button>
+    </div>`;
+  }).join("");
+}
+function openProfileModal(firstRun){
+  $("#profKicker").textContent=firstRun&&!profiles.list.length?"Bienvenido/a · primera vez":"Perfiles de práctica";
+  $("#profileBackdrop .x").style.display=profiles.activeId?"":"none";
+  renderAvatarPick();renderProfileList();
+  $("#settingsPop").classList.remove("show");
+  $("#profileBackdrop").classList.add("show");
+  if(!profiles.list.length)setTimeout(()=>$("#profNick").focus(),120);
+}
+$("#btnProfile").onclick=()=>openProfileModal(false);
+$("#btnProfiles").onclick=()=>openProfileModal(false);
+$("#avatarPick").addEventListener("click",ev=>{
+  const b=ev.target.closest("[data-av]");if(!b)return;
+  pickedAvatar=Number(b.dataset.av);renderAvatarPick();
+});
+$("#btnCreateProfile").onclick=()=>{
+  const nick=sanitizeNick($("#profNick").value);
+  if(!nick){toast("Escribe un apodo (no tu nombre real).","err","i-user");$("#profNick").focus();return;}
+  if(profiles.list.some(p=>p.nick.toLowerCase()===nick.toLowerCase())){toast("Ese apodo ya existe aquí. Elige otro.","err","i-user");return;}
+  createProfile(nick,AVATARS[pickedAvatar]);
+  $("#profNick").value="";
+  $("#profileBackdrop").classList.remove("show");
+  toast("Hola, "+nick+". Tu progreso es solo tuyo.","gold","i-user");
+};
+$("#btnGuest").onclick=()=>{
+  let n="Invitado",k=2;while(profiles.list.some(p=>p.nick===n))n="Invitado "+(k++);
+  createProfile(n,AVATARS[0]);
+  $("#profileBackdrop").classList.remove("show");
+  toast("Entraste como "+n+". Cambia el apodo cuando quieras.","info","i-user");
+};
+$("#profNick").addEventListener("keydown",ev=>{ev.stopPropagation();if(ev.key==="Enter")$("#btnCreateProfile").click();});
+$("#profileList").addEventListener("click",ev=>{
+  const use=ev.target.closest("[data-use]");
+  if(use){
+    activateProfile(use.dataset.use);
+    $("#profileBackdrop").classList.remove("show");
+    const p=activeProfile();if(p)toast("Ahora practica "+p.nick+".","gold","i-user");
+    return;
+  }
+  const ed=ev.target.closest("[data-edit]");
+  if(ed){
+    const id=ed.dataset.edit,row=ed.closest(".prof-row"),p=profiles.list.find(x=>x.id===id);
+    if(!p)return;
+    row.querySelector(".pinfo").innerHTML=`<input class="pedit-input" maxlength="20" value="${esc(p.nick)}" aria-label="Nuevo apodo">`;
+    const inp=row.querySelector("input");inp.focus();inp.select();
+    let done=false;
+    const commit=()=>{
+      if(done)return;done=true;
+      const v=sanitizeNick(inp.value);
+      if(v&&!profiles.list.some(x=>x.id!==id&&x.nick.toLowerCase()===v.toLowerCase())){p.nick=v;saveProfiles();updateProfileChip();}
+      renderProfileList();
+    };
+    inp.addEventListener("keydown",e=>{e.stopPropagation();if(e.key==="Enter")commit();else if(e.key==="Escape"){done=true;renderProfileList();}});
+    inp.addEventListener("blur",commit);
+    return;
+  }
+  const del=ev.target.closest("[data-pdel]");
+  if(del){
+    if(del.classList.contains("armed"))deleteProfile(del.dataset.pdel);
+    else{del.classList.add("armed");del.textContent="¿Borrar?";
+      setTimeout(()=>{if(del.isConnected){del.classList.remove("armed");del.innerHTML='<svg class="ic" style="width:14px;height:14px"><use href="#i-trash"/></svg>';}},2600);}
+  }
+});
+
+/* ============ 12. SELECTS ESTOICOS · dropdown oscuro propio ============ */
+function closeAllStoicSelects(except){
+  $$(".sselect.open").forEach(w=>{
+    if(w===except)return;
+    w.classList.remove("open");
+    const b=w.querySelector(".sselect-btn");if(b)b.setAttribute("aria-expanded","false");
+  });
+}
+function syncStoicSelect(sel){if(sel&&sel._stoic)sel._stoic.sync();}
+function initStoicSelects(){$$("select[data-stoic]").forEach(enhanceStoicSelect);}
+function enhanceStoicSelect(sel){
+  if(sel._stoic)return;
+  const wrap=document.createElement("div");wrap.className="sselect";
+  sel.parentNode.insertBefore(wrap,sel);wrap.appendChild(sel);
+  sel.classList.add("sselect-native");
+  const btn=document.createElement("button");btn.type="button";btn.className="sselect-btn";
+  btn.setAttribute("aria-haspopup","listbox");btn.setAttribute("aria-expanded","false");
+  /* Estructura PERMANENTE del botón: solo se cambia el texto de la etiqueta.
+     Si reemplazáramos innerHTML, el nodo clicado se desprendería del DOM y el
+     gestor de "clic fuera" cerraría el panel de Ajustes. */
+  const labelEl=document.createElement("span");labelEl.className="sselect-label";
+  const caret=document.createElementNS("http://www.w3.org/2000/svg","svg");
+  caret.setAttribute("class","ic sselect-caret");
+  const useEl=document.createElementNS("http://www.w3.org/2000/svg","use");
+  useEl.setAttribute("href","#i-next");
+  caret.appendChild(useEl);btn.append(labelEl,caret);
+  let dirty=true;
+  const panel=document.createElement("div");panel.className="sselect-panel";
+  const list=document.createElement("div");list.className="sselect-list";list.setAttribute("role","listbox");
+  let search=null;
+  if(sel.dataset.search){
+    search=document.createElement("input");search.type="text";search.className="sselect-search";
+    search.placeholder=sel.dataset.search;search.setAttribute("aria-label","Buscar voz");
+    panel.appendChild(search);
+  }
+  panel.appendChild(list);wrap.append(btn,panel);
+  let items=[];
+  const hasCur=()=>!!sel.querySelector('[data-cur="1"]');
+  function sync(){
+    const cur=Array.from(sel.querySelectorAll('[data-cur="1"]'));
+    let label="Elegir…";
+    if(cur.length){
+      const own=cur.filter(o=>(o.value.split("::")[1]||""));
+      label=own.length?("Voz propia · "+own.map(o=>(LANGS[o.dataset.lang]||{}).badge||o.dataset.lang).join(" · ")):"Automática (la mejor)";
+    }else{
+      const o=sel.options[sel.selectedIndex];
+      if(o)label=o.textContent;
+    }
+    labelEl.textContent=label;
+    const useCur=hasCur();
+    items.forEach(it=>{
+      const opt=Array.from(sel.options).find(o=>o.value===it.dataset.value);
+      const on=!!opt&&(useCur?opt.dataset.cur==="1":opt.selected);
+      it.classList.toggle("cur",on);it.setAttribute("aria-selected",on?"true":"false");
+    });
+  }
+  function build(){
+    list.innerHTML="";items=[];
+    const walk=parent=>{
+      Array.from(parent.children).forEach(node=>{
+        if(node.tagName==="OPTGROUP"){
+          const g=document.createElement("div");g.className="sselect-group";g.textContent=node.label;
+          list.appendChild(g);walk(node);
+        }else if(node.tagName==="OPTION"){
+          const it=document.createElement("button");it.type="button";
+          it.className="sselect-item";it.dataset.value=node.value;it.setAttribute("role","option");
+          it.innerHTML='<span class="sselect-check">✓</span><span class="sselect-txt">'+esc(node.textContent)+"</span>";
+          if(node.disabled){it.classList.add("disabled");it.disabled=true;}
+          else it.addEventListener("click",()=>pick(node.value));
+          list.appendChild(it);items.push(it);
+        }
+      });
+    };
+    walk(sel);sync();
+  }
+  function pick(v){
+    sel.value=v;
+    sel.dispatchEvent(new Event("change",{bubbles:true}));
+    sync();close();btn.focus();
+  }
+  function filter(q){
+    q=q.trim().toLowerCase();
+    items.forEach(it=>{it.style.display=(!q||it.textContent.toLowerCase().includes(q))?"":"none";});
+    let g=null,seen=false;
+    Array.from(list.children).forEach(node=>{
+      if(node.classList.contains("sselect-group")){if(g)g.style.display=seen?"":"none";g=node;seen=false;}
+      else if(node.style.display!=="none")seen=true;
+    });
+    if(g)g.style.display=seen?"":"none";
+  }
+  function open(){
+    closeAllStoicSelects(wrap);
+    if(dirty){build();dirty=false;}else sync();
+    if(search){search.value="";filter("");}
+    const r=btn.getBoundingClientRect();
+    wrap.classList.toggle("up",window.innerHeight-r.bottom<300&&r.top>300);
+    wrap.classList.add("open");btn.setAttribute("aria-expanded","true");
+    const first=list.querySelector(".sselect-item.cur:not(.disabled)")||list.querySelector(".sselect-item:not(.disabled)");
+    if(first){first.focus({preventScroll:true});first.scrollIntoView({block:"nearest"});}
+  }
+  function close(){wrap.classList.remove("open");btn.setAttribute("aria-expanded","false");}
+  btn.addEventListener("click",()=>wrap.classList.contains("open")?close():open());
+  list.addEventListener("keydown",ev=>{
+    const vis=items.filter(i=>!i.disabled&&i.style.display!=="none");
+    const idx=vis.indexOf(document.activeElement);
+    if(ev.key==="ArrowDown"){ev.preventDefault();(vis[idx+1]||vis[0]).focus();}
+    else if(ev.key==="ArrowUp"){ev.preventDefault();(vis[idx-1]||vis[vis.length-1]).focus();}
+    else if(ev.key==="Home"){ev.preventDefault();if(vis[0])vis[0].focus();}
+    else if(ev.key==="End"){ev.preventDefault();if(vis.length)vis[vis.length-1].focus();}
+    else if(ev.key==="Escape"){ev.preventDefault();ev.stopPropagation();close();btn.focus();}
+  });
+  if(search){
+    search.addEventListener("input",()=>filter(search.value));
+    search.addEventListener("keydown",ev=>{
+      ev.stopPropagation();
+      if(ev.key==="Escape"){close();btn.focus();}
+      else if(ev.key==="ArrowDown"){ev.preventDefault();const v=items.find(i=>!i.disabled&&i.style.display!=="none");if(v)v.focus();}
+    });
+  }
+  new MutationObserver(()=>{
+    dirty=true;
+    if(wrap.classList.contains("open")){build();dirty=false;}else sync();
+  }).observe(sel,{childList:true,subtree:true,attributes:true,attributeFilter:["selected","data-cur","disabled"]});
+  sel._stoic={sync,build,open,close};
+  build();dirty=false;
+}
+/* composedPath() conserva los ancestros ORIGINALES del clic, aunque el nodo
+   clicado se haya reconstruido durante el propio evento. */
+const inPath=(ev,selector)=>{
+  const path=ev.composedPath?ev.composedPath():[];
+  if(path.length)return path.some(n=>n instanceof Element&&n.matches&&n.matches(selector));
+  return !!(ev.target&&ev.target.closest&&ev.target.closest(selector));
+};
+document.addEventListener("click",ev=>{if(!inPath(ev,".sselect"))closeAllStoicSelects();});
+
+/* ============ EVENTOS E INICIO ============ */
+document.addEventListener("click",ev=>{
+  const del=ev.target.closest("[data-del]");
+  if(del){
+    ev.stopPropagation();
+    if(del.classList.contains("armed"))deleteCustom(del.dataset.del);
+    else{del.classList.add("armed");del.innerHTML="¿Eliminar?";
+      setTimeout(()=>{if(del.isConnected){del.classList.remove("armed");del.innerHTML='<svg class="ic" style="width:14px;height:14px"><use href="#i-trash"/></svg>';}},2600);}
+    return;
+  }
+  const card=ev.target.closest("[data-book]");
+  if(card)openBook(card.dataset.book,(state.lastRead&&state.lastRead.bid===card.dataset.book)?state.lastRead.idx:0);
+});
+document.addEventListener("keydown",ev=>{
+  const card=ev.target.closest&&ev.target.closest("[data-book]");
+  if(card&&(ev.key==="Enter"||ev.key===" ")){ev.preventDefault();card.click();}
+});
+$("#btnBack").onclick=()=>showView("library");
+$("#btnPrev").onclick=()=>nav(-1);
+$("#btnNext").onclick=()=>nav(1);
+$("#dots").addEventListener("click",ev=>{const d=ev.target.closest("[data-dot]");if(d){current.idx=Number(d.dataset.dot);renderBlock();}});
+$("#modeSwitch").onclick=()=>{state.settings.fluent=!state.settings.fluent;save();applyMode();};
+$("#btnContinue").onclick=()=>{
+  if(state.lastRead&&getBook(state.lastRead.bid))openBook(state.lastRead.bid,state.lastRead.idx);
+  else openBook("meditations",0);
+};
+$("#btnAddText").onclick=openAddModal;
+$("#btnCreateText").onclick=createCustomBook;
+$("#palettePick").addEventListener("click",ev=>{
+  const b=ev.target.closest("[data-pal]");if(!b)return;
+  pickedPalette=Number(b.dataset.pal);
+  $$("#palettePick button").forEach(x=>x.classList.toggle("on",x===b));
+});
+$$("[data-close]").forEach(b=>b.onclick=()=>{if(b.dataset.close==="profileBackdrop"&&!profiles.activeId)return;$("#"+b.dataset.close).classList.remove("show");});
+$$(".backdrop").forEach(bd=>bd.addEventListener("click",ev=>{if(ev.target===bd){if(bd.id==="profileBackdrop"&&!profiles.activeId)return;bd.classList.remove("show");}}));
+$("#btnSettings").onclick=ev=>{
+  ev.stopPropagation();loadVoices();
+  $("#goalSelect").value=String(state.settings.goal);
+  syncStoicSelect($("#goalSelect"));
+  $("#settingsPop").classList.toggle("show");
+};
+document.addEventListener("click",ev=>{
+  if(!inPath(ev,"#settingsPop")&&!inPath(ev,"#btnSettings"))$("#settingsPop").classList.remove("show");
+});
+$("#voiceSelect").onchange=ev=>{
+  const parts=ev.target.value.split("::");
+  const L=parts[0],name=parts.slice(1).join("::");
+  state.settings.voices[L]=name;save();
+  buildVoiceSelect();
+  toast("Voz de "+LANGS[L].label+" actualizada.","info","i-wave");
+};
+$("#goalSelect").onchange=ev=>{state.settings.goal=Number(ev.target.value);save();renderLibrary();};
+$("#btnReset").onclick=function(){
+  if(this.classList.contains("armed")){
+    if(profiles.activeId){try{localStorage.removeItem(LS_USER(profiles.activeId));}catch(e){}}
+    state=defaultState();save();
+    this.classList.remove("armed");this.textContent="Borrar mi progreso (solo este perfil)";
+    $("#settingsPop").classList.remove("show");applyMode();showView("library");
+    toast("Progreso de este perfil reiniciado. Los demás perfiles no se tocan.","info","i-col");
+  }else{
+    this.classList.add("armed");this.textContent="¿Seguro? Solo se borra ESTE perfil";
+    setTimeout(()=>{this.classList.remove("armed");this.textContent="Borrar mi progreso (solo este perfil)";},3000);
+  }
+};
+document.addEventListener("keydown",ev=>{
+  if(ev.key==="Escape"){$$(".backdrop.show").forEach(b=>{if(b.id==="profileBackdrop"&&!profiles.activeId)return;b.classList.remove("show");});$("#settingsPop").classList.remove("show");return;}
+  if(!$("#readerView").classList.contains("active"))return;
+  if($(".backdrop.show"))return;
+  if(ev.target.closest("input,textarea,select,button"))return;
+  if(ev.key==="ArrowRight")nav(1);
+  else if(ev.key==="ArrowLeft")nav(-1);
+  else if(ev.key===" "){ev.preventDefault();ttsActive?stopSpeak():speakBlock();}
+  else if(ev.key.toLowerCase()==="m"){micActive?stopMic():startMic();}
+  else if(ev.key.toLowerCase()==="s"){cycleRate();}
+  else if(ev.key.toLowerCase()==="t"){const b=$("#btnReveal");if(b)b.click();}
+});
+if(synth){loadVoices();synth.onvoiceschanged=loadVoices;}
+if(!SR)setTimeout(()=>toast("Sin reconocimiento de voz aquí. Para shadowing usa Chrome/Edge.","info","i-mic"),1200);
+$("#year").textContent=new Date().getFullYear();
+/* arranque con perfiles: recupera el último apodo usado */
+if(profiles.list.length){
+  if(!profiles.list.some(p=>p.id===profiles.activeId))profiles.activeId=profiles.list[0].id;
+  saveProfiles();state=loadUserState(profiles.activeId);
+}
+applyMode();updateProfileChip();renderLibrary();
+$("#goalSelect").value=String(state.settings.goal);
+initStoicSelects();
+if(!profiles.activeId)openProfileModal(true);
+</script>
+</body>
+</html>
